@@ -27,6 +27,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('pages', function () {
             return view('admin.pages');
         })->name('pages');
+
     });
 
     Route::get('/', Frontpage::class);
