@@ -53,7 +53,9 @@ class Pages extends Component
 
     public function create()
     {
-        $this->validate($this->rules());
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
         Page::create($this->modelData());
         $this->modalFormVisible = false;
         $this->reset();
@@ -146,7 +148,7 @@ class Pages extends Component
 
     public function generateSlug($value)
     {
-        return Str::slug($value)
+        return Str::slug($value);
     }
 
         /**

@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "livewire/livewire": "^2.5",
+        "mcamara/laravel-localization": "^1.7",
         "te7a-houdini/laravel-trix": "^2.0"
     },
     "require-dev": {
