@@ -19,9 +19,23 @@ class Frontpage extends Component
 
     public function retrieveContent($urlslug)
     {
-        $page = Page::where('slug', $urlslug)->first();
-        $this->title = $page->title;
-        $this->content = $page->content;
+        $customHome = true;
+
+        if ($customHome) {
+            if (empty($urlslug)) {
+                $page = Page::where('is_default_home', true)->first();
+            } else {
+                $page = Page::where('slug', $urlslug)->first();
+                if (!$page) {
+                    $page = Page::where('is_default_not_found', true)->first();
+                }
+            }
+
+            $this->title = $page->title;
+            $this->content = $page->content;
+        }
+
+
     }
 
     public function render()

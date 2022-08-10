@@ -7,6 +7,8 @@ use App\Models\Page;
 use App\Http\Livewire\Trix;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
+use phpDocumentor\Reflection\Types\This;
+use Illuminate\Support\Str;
 
 class Pages extends Component
 {
@@ -18,6 +20,8 @@ class Pages extends Component
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $modelId;
+    public $isSetToDefaultHomePage;
+    public $isSetToDefaultNotFoundPage;
 
 //    public $listeners = [
 //        Trix::EVENT_VALUE_UPDATED // trix_value_updated()
@@ -36,7 +40,7 @@ class Pages extends Component
     {
         return [
             'title' => 'required',
-            'slug' => ['required', Rule::unique('pages', 'slug')],
+            'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
             'content' => 'required',
         ];
     }
@@ -52,7 +56,7 @@ class Pages extends Component
         $this->validate($this->rules());
         Page::create($this->modelData());
         $this->modalFormVisible = false;
-        $this->clearVars();
+        $this->reset();
     }
 
     public function read()
@@ -62,10 +66,12 @@ class Pages extends Component
 
     public function update()
     {
-        $this->validate($this->rules());
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
         Page::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
-        $this->clearVars();
+        $this->reset();
     }
 
     public function delete()
@@ -81,7 +87,7 @@ class Pages extends Component
      */
     public function createShowModal()
     {
-        $this->clearVars();
+        $this->reset();
         $this->resetValidation();
         $this->modalFormVisible = true;
     }
@@ -108,6 +114,8 @@ class Pages extends Component
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
 
     /**
@@ -120,6 +128,8 @@ class Pages extends Component
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
+            'is_default_home' => $this->isSetToDefaultHomePage,
+            'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
     }
 
@@ -129,14 +139,6 @@ class Pages extends Component
         $this->modalConfirmDeleteVisible = true;
     }
 
-    public function clearVars()
-    {
-        $this->title = null;
-        $this->slug = null;
-        $this->content = null;
-        $this->modelId = null;
-    }
-
     public function updatedTitle($value)
     {
         $this->slug=$this->generateSlug($value);
@@ -144,10 +146,54 @@ class Pages extends Component
 
     public function generateSlug($value)
     {
-        $process1 = str_replace(' ','-', $value);
-        $process2 = strtolower($process1);
-        return $process2;
+        return Str::slug($value)
     }
+
+        /**
+     * Runs everytime the isSetToDefaultHomePage
+     * variable is updated.
+     *
+     * @return void
+     */
+    public function updatedIsSetToDefaultHomePage()
+    {
+        $this->isSetToDefaultNotFoundPage = null;
+    }
+
+    /**
+     * Runs everytime the isSetToDefaultNotFoundPage
+     * variable is updated.
+     *
+     * @return void
+     */
+    public function updatedIsSetToDefaultNotFoundPage()
+    {
+        $this->isSetToDefaultHomePage = null;
+    }
+
+    private function unassignDefaultHomePage()
+    {
+        if ($this->isSetToDefaultHomePage != null) {
+            Page::where('is_default_home', true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+
+    /**
+     * Unassigns the default 404 page in the database table
+     *
+     * @return void
+     */
+    private function unassignDefaultNotFoundPage()
+    {
+        if ($this->isSetToDefaultNotFoundPage != null) {
+            Page::where('is_default_not_found', true)->update([
+                'is_default_not_found' => false,
+            ]);
+        }
+    }
+
 
     public function render()
     {

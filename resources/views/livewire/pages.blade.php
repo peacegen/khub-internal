@@ -22,6 +22,8 @@
         <tr>
             <td class="px-6 py-4 text-sm whitespace-no-wrap">
                 {{ $item->title }}
+                {!! $item->is_default_home ? '<span class="text-green-400 text-xs font-bold">[Default Home Page]</span>':''!!}
+                {!! $item->is_default_not_found ? '<span class="text-red-400 text-xs font-bold">[Default 404 Page]</span>':''!!}
             </td>
             <td class="px-6 py-4 text-sm whitespace-no-wrap">
                 <a
@@ -69,6 +71,18 @@
                 <x-jet-label for="slug" value="{{ __('Slug') }}" />
                 <x-jet-input id="slug" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="slug" required />
                 @error('slug') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="mt-4">
+                <label>
+                    <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultHomePage }}" wire:model="isSetToDefaultHomePage"/>
+                    <span class="ml-2 text-sm text-gray-600">Set as the default home page</span>
+                </label>
+            </div>
+            <div class="mt-4">
+                <label>
+                    <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultNotFoundPage }}" wire:model="isSetToDefaultNotFoundPage"/>
+                    <span class="ml-2 text-sm text-red-600">Set as the default 404 error page</span>
+                </label>
             </div>
             <div class="mt-4">
                 <x-jet-label for="content" value="{{ __('Content') }}" />
