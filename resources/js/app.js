@@ -1,5 +1,6 @@
 import './bootstrap';
-import './App';
+import '../css/app.css';
+// import './App';
 
 import Alpine from 'alpinejs';
 
