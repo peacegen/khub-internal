@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60897f3a4488ad4440a616a6e15e6961",
+    "content-hash": "7087d29215583ab15923ada5837f6425",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -533,6 +533,60 @@
                 }
             ],
             "time": "2022-06-18T20:57:19+00:00"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/08e27c97e4c6ed02f37c5b2b20488046c8d90d75",
+                "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "dev-master#72de02a7b80c6bb8864ef9bf66d41d2f58f826bd"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ],
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "exclude-from-classmap": [
+                    "/library/HTMLPurifier/Language/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "support": {
+                "issues": "https://github.com/ezyang/htmlpurifier/issues",
+                "source": "https://github.com/ezyang/htmlpurifier/tree/master"
+            },
+            "time": "2020-06-29T00:56:53+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -2175,6 +2229,87 @@
             "time": "2022-01-26T10:27:45+00:00"
         },
         {
+            "name": "mews/purifier",
+            "version": "3.3.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mewebstudio/Purifier.git",
+                "reference": "164b420c4a80d2d0a89c1023f0aa9b3c0e3d6dc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/164b420c4a80d2d0a89c1023f0aa9b3c0e3d6dc5",
+                "reference": "164b420c4a80d2d0a89c1023f0aa9b3c0e3d6dc5",
+                "shasum": ""
+            },
+            "require": {
+                "ezyang/htmlpurifier": "4.13.*",
+                "illuminate/config": "^5.8|^6.0|^7.0|^8.0|^9.0",
+                "illuminate/filesystem": "^5.8|^6.0|^7.0|^8.0|^9.0",
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0|^9.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.2|^5.5.1",
+                "mockery/mockery": "^1.3.3",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "suggest": {
+                "laravel/framework": "To test the Laravel bindings",
+                "laravel/lumen-framework": "To test the Lumen bindings"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mews\\Purifier\\PurifierServiceProvider"
+                    ],
+                    "aliases": {
+                        "Purifier": "Mews\\Purifier\\Facades\\Purifier"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Mews\\Purifier\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERİN",
+                    "email": "me@mewebstudio.com",
+                    "homepage": "https://github.com/mewebstudio",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5/6/7 HtmlPurifier Package",
+            "homepage": "https://github.com/mewebstudio/purifier",
+            "keywords": [
+                "Purifier",
+                "htmlpurifier",
+                "laravel5 HtmlPurifier",
+                "laravel5 Purifier",
+                "laravel5 Security",
+                "laravel6 HtmlPurifier",
+                "laravel6 Purifier",
+                "laravel6 Security",
+                "security",
+                "xss"
+            ],
+            "support": {
+                "issues": "https://github.com/mewebstudio/Purifier/issues",
+                "source": "https://github.com/mewebstudio/Purifier/tree/3.3.8"
+            },
+            "time": "2022-07-20T12:14:06+00:00"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.39",
             "source": {
@@ -3572,6 +3707,65 @@
                 }
             ],
             "time": "2022-08-05T17:58:37+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/09f80fa240d44fafb1c70657c74ee44ffa929357",
+                "reference": "09f80fa240d44fafb1c70657c74ee44ffa929357",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.23|^7.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.12.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-28T14:29:26+00:00"
         },
         {
             "name": "symfony/console",
@@ -5783,6 +5977,139 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.4"
             },
             "time": "2021-12-08T09:12:39+00:00"
+        },
+        {
+            "name": "tonysm/globalid-laravel",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tonysm/globalid-laravel.git",
+                "reference": "63ff6d82304ad5415a72374985ba9c1235362fcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tonysm/globalid-laravel/zipball/63ff6d82304ad5415a72374985ba9c1235362fcf",
+                "reference": "63ff6d82304ad5415a72374985ba9c1235362fcf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.47|^9.0",
+                "php": "^8.0|^8.1",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^5.3|^6.0",
+                "orchestra/testbench": "^6.24",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.29",
+                "vimeo/psalm": "^4.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tonysm\\GlobalId\\GlobalIdServiceProvider"
+                    ],
+                    "aliases": {
+                        "GlobalId": "Tonysm\\GlobalId\\GlobalIdFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tonysm\\GlobalId\\": "src",
+                    "Tonysm\\GlobalId\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tony Messias",
+                    "email": "tonysm@hey.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Identify app models with a URI. Inspired by the globalid gem.",
+            "homepage": "https://github.com/tonysm/globalid-laravel",
+            "keywords": [
+                "globalid",
+                "globalid-laravel",
+                "laravel",
+                "tonysm"
+            ],
+            "support": {
+                "issues": "https://github.com/tonysm/globalid-laravel/issues",
+                "source": "https://github.com/tonysm/globalid-laravel/tree/1.1.0"
+            },
+            "time": "2022-01-29T20:57:04+00:00"
+        },
+        {
+            "name": "tonysm/rich-text-laravel",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tonysm/rich-text-laravel.git",
+                "reference": "7c7411d52b07afcc60662100e79478aca9dae588"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tonysm/rich-text-laravel/zipball/7c7411d52b07afcc60662100e79478aca9dae588",
+                "reference": "7c7411d52b07afcc60662100e79478aca9dae588",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.47|^9.0",
+                "php": "^8.0|^8.1",
+                "spatie/laravel-package-tools": "^1.9.2",
+                "tonysm/globalid-laravel": "^1.1.0"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^5.3|^6.0",
+                "orchestra/testbench": "^6.24",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.29",
+                "vimeo/psalm": "^4.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tonysm\\RichTextLaravel\\RichTextLaravelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tonysm\\RichTextLaravel\\": "src",
+                    "Tonysm\\RichTextLaravel\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tony Messias",
+                    "email": "tonysm@hey.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Integrates Trix content with Laravel",
+            "homepage": "https://github.com/tonysm/rich-text-laravel",
+            "keywords": [
+                "laravel",
+                "rich-text-laravel",
+                "tonysm"
+            ],
+            "support": {
+                "issues": "https://github.com/tonysm/rich-text-laravel/issues",
+                "source": "https://github.com/tonysm/rich-text-laravel/tree/1.6.0"
+            },
+            "time": "2022-07-03T00:14:25+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

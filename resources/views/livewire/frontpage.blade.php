@@ -19,6 +19,7 @@
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">
+            {{-- //TODO Remove this and have a better top menu --}}
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

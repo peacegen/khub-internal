@@ -98,6 +98,14 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-4">
+                <x-jet-label for="content" value="{{ __('Content') }}" />
+                <div class="rounded-md shadow-sm">
+                    <div class="mt-1 bg-white" wire:ignore>
+                        @livewire('trix', ['value' => 'Awesome <strong>sauce</strong>'])
+                    </div>
+                </div>
+            </div>
         </x-slot>
 
         <x-slot name="footer">

@@ -1,4 +1,5 @@
 import './bootstrap';
+import './libs/trix';
 import '../css/app.css';
 // import './App';
 
