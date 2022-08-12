@@ -6,4 +6,7 @@ return [
 
     // If the user wants to use roles, set this to true.
     'using-roles' => true,
+
+    // Locale
+    'locale' => 'en-US',
 ];
