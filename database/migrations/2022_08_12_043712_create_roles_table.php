@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        if (config('config.using-teams')){
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('team')->default('user')->after('role');
-        });}
+        if (config('config.using-roles')){
+            Schema::create('roles', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('description')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -26,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('roles');
     }
 };
