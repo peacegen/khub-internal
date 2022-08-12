@@ -22,7 +22,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             'auth:sanctum',
             config('jetstream.auth_session'),
             'verified',
-            'accessrole',
+            // 'accessrole',
         ])->group(function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
@@ -32,6 +32,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.pages');
             })->name('pages');
 
+            Route::get('/users', function () {
+                return view('admin.users');
+            })->name('users');
+
+            Route::get('/user-permissions', function () {
+                return view('admin.user-permissions');
+            })->name('user-permissions');
+
+            Route::get('/roles', function () {
+                return view('admin.roles');
+            })->name('roles');
         });
 
         Route::get('/', Frontpage::class);

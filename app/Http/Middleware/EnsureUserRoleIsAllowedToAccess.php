@@ -44,6 +44,8 @@ class EnsureUserRoleIsAllowedToAccess
             'admin' => [
                 'pages',
                 'dashboard',
+                'users',
+                'user-permissions',
             ]
             ];
     }
