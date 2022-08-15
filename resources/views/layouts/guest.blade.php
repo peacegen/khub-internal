@@ -14,7 +14,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <x-rich-text-trix-styles />
 
+
         <x-rich-text-trix-styles />
+
 
 
     </head>

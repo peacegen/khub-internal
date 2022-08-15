@@ -84,28 +84,18 @@
                     <span class="ml-2 text-sm text-red-600">Set as the default 404 error page</span>
                 </label>
             </div>
-            <div class="mt-4">
-                <x-jet-label for="content" value="{{ __('Content') }}" />
-                <div class="rounded-md shadow-sm">
-                    <div class="mt-1 bg-white">
-                        <!-- @TODO Fancy input-->
-<!--                        <div class="body-content" wire:ignore>-->
-<!--                            <input id="x" type="hidden" name="content">-->
-<!--                            <livewire:trix :value="$content"></livewire:trix>-->
-<!--                        </div>-->
-                        <x-jet-input id="content" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="content" required />
-                        @error('content') <span class="error">{{ $message }}</span> @enderror
-                    </div>
-                </div>
+            <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
+
+                @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
-            <div class="mt-4">
+            {{-- <div class="mt-4">
                 <x-jet-label for="content" value="{{ __('Content') }}" />
                 <div class="rounded-md shadow-sm">
                     <div class="mt-1 bg-white" wire:ignore>
-                        @livewire('trix', ['value' => 'Awesome <strong>sauce</strong>'])
+                        @livewire('trix', ['value' => $content])
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </x-slot>
 
         <x-slot name="footer">

@@ -9,10 +9,12 @@ use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use phpDocumentor\Reflection\Types\This;
 use Illuminate\Support\Str;
+use Tonysm\RichTextLaravel\Livewire\WithRichTexts;
 
 class Pages extends Component
 {
     use WithPagination;
+    // use WithRichTexts;
 
     public $slug;
     public $title;
@@ -22,14 +24,6 @@ class Pages extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
-
-//    public $listeners = [
-//        Trix::EVENT_VALUE_UPDATED // trix_value_updated()
-//    ];
-//
-//    public function trix_value_updated($value){
-//        $this->content = $value;
-//    }
 
     /**
      * Validation rules
@@ -53,10 +47,12 @@ class Pages extends Component
 
     public function create()
     {
+        print_r($this->modelData());
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
-        Page::create($this->modelData());
+        $modelData = $this->modelData();
+        Page::create($modelData);
         $this->modalFormVisible = false;
         $this->reset();
     }

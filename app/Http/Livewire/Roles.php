@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Roles extends Component
 {
     use WithPagination;
-    
+
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
     public $modelId;
@@ -25,7 +25,7 @@ class Roles extends Component
      */
     public function rules()
     {
-        return [            
+        return [
         ];
     }
 
@@ -49,7 +49,7 @@ class Roles extends Component
      */
     public function modelData()
     {
-        return [          
+        return [
         ];
     }
 
@@ -138,7 +138,7 @@ class Roles extends Component
     {
         $this->modelId = $id;
         $this->modalConfirmDeleteVisible = true;
-    }    
+    }
 
     public function render()
     {
