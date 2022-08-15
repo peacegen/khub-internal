@@ -13,6 +13,8 @@ class Page extends Model
 
     protected $guarded = [];
 
+    protected $fillable = ['content'];
+
     protected $richTextFields = [
         'content',
     ];

@@ -36,8 +36,7 @@
                 @endif
             </div>
             <h1>{{ $title }}</h1>
-            {!! $content !!}
-            <div id="hello-react"></div>
+            {!! $content->render() !!}
         </div>
     </body>
 </html>

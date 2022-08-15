@@ -34,7 +34,7 @@
                     {{ $item->slug }}
                 </a>
             </td>
-            <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content, 50, '...') !!}</td>
+            <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content->toPlainText(), 50, '...') !!}</td>
             <td class="px-6 py-4 text-right text-sm">
                 <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                     {{ __('Update') }}
@@ -84,18 +84,10 @@
                     <span class="ml-2 text-sm text-red-600">Set as the default 404 error page</span>
                 </label>
             </div>
-            <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
-
+            <div class="mb-4" wire:ignore>
+                <x-trix-field id="content" name="content" value="{{ $content }}"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
-            {{-- <div class="mt-4">
-                <x-jet-label for="content" value="{{ __('Content') }}" />
-                <div class="rounded-md shadow-sm">
-                    <div class="mt-1 bg-white" wire:ignore>
-                        @livewire('trix', ['value' => $content])
-                    </div>
-                </div>
-            </div> --}}
         </x-slot>
 
         <x-slot name="footer">
@@ -115,6 +107,7 @@
 
         </x-slot>
     </x-jet-dialog-modal>
+
 
     <!--    Delete confirmation modal-->
     <x-jet-dialog-modal wire:model="modalConfirmDeleteVisible">

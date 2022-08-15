@@ -17,6 +17,7 @@
 
         <!-- Styles -->
         @livewireStyles
+        <x-rich-text-trix-styles />
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

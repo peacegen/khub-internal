@@ -111,7 +111,7 @@ class Pages extends Component
         $data = Page::find($this->modelId);
         $this->title = $data->title;
         $this->slug = $data->slug;
-        $this->content = $data->content;
+        $this->content = $data->content->toTrixHtml();
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
