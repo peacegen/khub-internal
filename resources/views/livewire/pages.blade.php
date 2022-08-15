@@ -84,7 +84,7 @@
                     <span class="ml-2 text-sm text-red-600">Set as the default 404 error page</span>
                 </label>
             </div>
-            <div class="mb-4" wire:ignore>
+            <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
                 <x-trix-field id="content" name="content" value="{{ $content }}"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>

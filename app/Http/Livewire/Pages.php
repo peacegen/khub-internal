@@ -47,7 +47,6 @@ class Pages extends Component
 
     public function create()
     {
-        print_r($this->modelData());
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
