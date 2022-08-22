@@ -66,6 +66,7 @@ class Pages extends Component
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
+
         Page::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
         $this->reset();

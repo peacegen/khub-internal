@@ -12,9 +12,7 @@ class Page extends Model
     use HasRichText;
 
     protected $guarded = [];
-
-    protected $fillable = ['title', 'slug', 'content'];
-
+    
     protected $richTextFields = [
         'content',
     ];
