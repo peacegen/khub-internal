@@ -14,7 +14,7 @@ use Tonysm\RichTextLaravel\Livewire\WithRichTexts;
 class Pages extends Component
 {
     use WithPagination;
-    // use WithRichTexts;
+    use WithRichTexts;
 
     public $slug;
     public $title;
@@ -110,7 +110,7 @@ class Pages extends Component
         $data = Page::find($this->modelId);
         $this->title = $data->title;
         $this->slug = $data->slug;
-        $this->content = $data->content->toTrixHtml();
+        $this->content = $data->content;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
