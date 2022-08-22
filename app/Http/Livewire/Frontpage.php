@@ -39,11 +39,11 @@ class Frontpage extends Component
     }
 
     private function sideNavLinks() {
-        return ([new Link('Home', 'home'), new Link('About', 'about')]);
+        return ([new Link('Home', 'home'), new Link('Settings', 'settings')]);
     }
 
     private function topNavLinks() {
-        return ([new Link('Home', 'home'), new Link('About', 'about')]);
+        return ([new Link('Home', 'home'), new Link('Settings', 'settings')]);
     }
 
     public function render()
