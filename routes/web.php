@@ -28,19 +28,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('dashboard');
             })->name('dashboard');
 
-            Route::get('pages', function () {
+            // TODO Make better settings routing
+            Route::get('/settings', function () {
+                return view('livewire.settings');
+            })->name('settings');
+
+            Route::get('/settings/pages', function () {
                 return view('admin.pages');
             })->name('pages');
 
-            Route::get('/users', function () {
+            Route::get('/settings/users', function () {
                 return view('admin.users');
             })->name('users');
 
-            Route::get('/user-permissions', function () {
-                return view('admin.user-permissions');
-            })->name('user-permissions');
+            Route::get('/settings/permissions', function () {
+                return view('admin.permissions');
+            })->name('permissions');
 
-            Route::get('/roles', function () {
+            Route::get('/settings/roles', function () {
                 return view('admin.roles');
             })->name('roles');
         });

@@ -38,8 +38,30 @@ class Frontpage extends Component
 
     }
 
+    private function sideNavLinks() {
+        return ([new Link('Home', 'home'), new Link('About', 'about')]);
+    }
+
+    private function topNavLinks() {
+        return ([new Link('Home', 'home'), new Link('About', 'about')]);
+    }
+
     public function render()
     {
-        return view('livewire.frontpage')->layout('layouts.frontpage');
+        return view('livewire.frontpage', [
+            'sideBarLinks' => $this->sideNavLinks(),
+            'topNavLinks' => $this->topNavLinks(),
+        ])->layout('layouts.frontpage');
+    }
+}
+
+class Link {
+    public $slug;
+    public $label;
+
+    public function __construct($label, $slug)
+    {
+        $this->label = $label;
+        $this->slug = $slug;
     }
 }
