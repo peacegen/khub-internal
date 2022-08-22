@@ -24,6 +24,8 @@ class Pages extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
+    /** @var array \Livewire\TemporaryUploadedFile[] */
+    public $newFiles = [];
 
     /**
      * Validation rules
