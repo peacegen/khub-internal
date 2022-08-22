@@ -15,7 +15,7 @@ return new class extends Migration
     {
         if (config('config.using-teams')){
         Schema::table('users', function (Blueprint $table) {
-            $table->string('team')->default('user')->after('role');
+            $table->string('team')->default('user')->after('id');
         });}
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('team');
+            $table->dropIfExists('team');
         });
     }
 };

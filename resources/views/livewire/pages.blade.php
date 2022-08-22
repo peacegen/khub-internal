@@ -85,7 +85,7 @@
                 </label>
             </div>
             <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
-                <x-trix-field id="content" name="content" value="{!!  old('content', $content) !!}"/>
+                <x-trix-field id="content" name="content" value="{!!  old('content', $this->content->toTrixHtml()) !!}"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
         </x-slot>

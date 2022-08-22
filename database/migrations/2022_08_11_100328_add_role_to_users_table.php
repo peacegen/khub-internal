@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if (config(['config.using-roles'])){
+
+        if (config('config.using-roles')){
             Schema::table('users', function (Blueprint $table) {
                 $table->string('role')->default('user')->after('id');
             });
@@ -28,7 +29,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            $table->dropIfExists('role');
         });
     }
 };
