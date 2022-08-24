@@ -130,7 +130,7 @@
         </x-slot>
     </x-jet-dialog-modal>
 
-    <script>
+    {{-- <script>
         function uploadTrixAttachment(attachment) {
             //upload with livewire
             @this.upload('newFiles',
@@ -153,7 +153,7 @@
 
             );
         }
-        </script>
+        </script> --}}
 </div>
 
 
