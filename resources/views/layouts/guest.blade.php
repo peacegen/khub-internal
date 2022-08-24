@@ -15,9 +15,6 @@
         <x-rich-text-trix-styles />
 
 
-        <x-rich-text-trix-styles />
-
-
 
     </head>
     <body>

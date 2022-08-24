@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
+use App\Http\Livewire\Homepage;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             })->name('roles');
         });
 
-        Route::get('/', Frontpage::class);
+        Route::get('/', Homepage::class);
         Route::get('/{urlslug}', Frontpage::class);
 
     });
