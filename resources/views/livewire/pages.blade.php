@@ -85,7 +85,7 @@
                 </label>
             </div>
             <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
-                <x-trix-field id="content" name="content" value="{!!  old('content', $this->content) !!}" @trix-attachment-add="console.log($event.attachment)"/>
+                <x-trix-field id="content" name="content" value="{!!  old('content', $this->content) !!}" @trix-attachment-add="uploadTrixAttachment($event.attachment)"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
         </x-slot>
@@ -129,20 +129,31 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
+
+    <script>
+        function uploadTrixAttachment(attachment) {
+            //upload with livewire
+            @this.upload('newFiles',
+            attachment.file,
+            function (uploadedUrl) {
+                const eventName = "trix-upload-completed:${btoa(uploadedUrl)}";
+                const listener = function (event) {
+                    attachment.setAttributes(event.detail);
+                    window.removeEventListener(eventName, listener);
+                }
+
+                window.addEventListener(eventName, listener);
+
+                @this.call('completeUpload', uploadedUrl, eventName);
+            },
+            function () {},
+            function (event) {
+                attachment.setUploadProgress(event.detail.progress);
+            }
+
+            );
+        }
+        </script>
 </div>
 
-<script>
-function uploadTrixImage(attachment) {
-    //upload with livewire
-    @this.upload('newFiles'.attachment.file,
-    function (uploadedUrl) {
-        console.log(uploadedUrl);
-    },
-    function () {},
-    function (event) {
-        attachment.setUploadProgress(event.detail.progress);
-    }
 
-    );
-}
-</script>

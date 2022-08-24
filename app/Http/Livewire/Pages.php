@@ -9,12 +9,15 @@ use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use phpDocumentor\Reflection\Types\This;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 use Tonysm\RichTextLaravel\Livewire\WithRichTexts;
+use Illuminate\Support\Facades\Storage;
 
 class Pages extends Component
 {
     use WithPagination;
     use WithRichTexts;
+    use WithFileUploads;
 
     public $slug;
     public $title;
@@ -147,6 +150,21 @@ class Pages extends Component
     public function generateSlug($value)
     {
         return Str::slug($value);
+    }
+
+    public function completeUpload(string $uploadedUrl, string $eventName)
+    {
+        foreach ($this->newFiles as $file) {
+            if ($file->getFilename() === $uploadedUrl) {
+                $newFilename = $file->store('/', 'attachments');
+                $url = Storage::disk('attachments')->url($newFilename);
+                $this->dispatchBrowserEvent($eventName, [
+
+                    'url' => $url,
+                    'href' => $url,
+                ]);
+            }
+        }
     }
 
         /**
