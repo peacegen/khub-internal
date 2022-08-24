@@ -8,9 +8,15 @@ class Homepage extends Component
 {
     public function render()
     {
-        $items = [
+        $items = [[
             'content' => "test",
-        ];
+            'image-url' => "https://via.placeholder.com/150",
+        ],
+        [
+            'content' => "test1",
+            'image-url' => null,
+        ]
+    ];
 
         return view('livewire.homepage', [
             'items' => $items

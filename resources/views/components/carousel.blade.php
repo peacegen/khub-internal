@@ -92,16 +92,13 @@
 
     <div class="carousel js-flickity " wire:ignore>
         @foreach($items as $item)
-        <div class="carousel-cell">
-            <x-carousel-card >
-                content="{{ $item->content }}"
-                background="{{ $item->image-url ?? "https://i.imgur.com/kGkSg1v.png" }}"
+            <div class="carousel-cell">
 
-            >
-            {{ $item->content }}
-
-            </x-carousel-card>
-        </div>
+                <x-carousel-card
+                content="{{ $item['content'] }}"
+                background="{{ $item['image-url'] ?: 'https://www.researchgate.net/profile/Donald-Bailey-5/publication/224624453/figure/fig1/AS:393833717223438@1470908683517/Original-colour-bar-static-test-image-used-in-analogue-television-II-METHODOLOGY.png' }}">
+                </x-carousel-card>
+            </div>
 
         @endforeach
 
