@@ -1,24 +1,11 @@
 
-<div>
-    <style>
-        /* Container holding the image and the text */
-        .container {
-        position: relative;
-        text-align: center;
-        color: white;
-        }
-
-        /* Centered text */
-        .centered {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        }
-    </style>
-<div class="container">
-
-    <img src={{ $background }}>
-    <div class="centered">{{ $content }}</div>
-</div>
-</div>
+  <div class="relative ">
+    <a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-90 duration-300">
+      <h1  class=tracking-wider > {{ $content }}</h1>
+      </a>
+    <a href="#" class="relative">
+        <div class="h-48 flex flex-wrap content-center">
+            <img src="{{ $background }}" class="mx-auto" alt="">
+        </div>
+    </a>
+  </div>
