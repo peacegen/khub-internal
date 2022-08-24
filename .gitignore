@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 stubs/*.stub
 public/vendor/*
+package-lock.json
