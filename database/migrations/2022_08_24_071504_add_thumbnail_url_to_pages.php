@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->string('thumbnail-url')->nullable();
-            $table->string('tag')->nullable();
+            $table->string('thumbnail_url')->after('slug')->nullable();
         });
     }
 
@@ -27,8 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropIfExists('thumbnail-url');
-            $table->dropIfExists('tag');
+            $table->dropIfExists('thumbnail_url');
         });
     }
 };

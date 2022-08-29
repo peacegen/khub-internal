@@ -12,9 +12,13 @@ class Page extends Model
     use HasRichText;
 
     protected $guarded = [];
-    
+
     protected $richTextFields = [
         'content',
     ];
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 
 }
