@@ -26,7 +26,7 @@ class Pages extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
-    public $tags;
+    public $tags = [];
     /** @var array \Livewire\TemporaryUploadedFile[] */
     public $newFiles = [];
 
@@ -56,7 +56,7 @@ class Pages extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         $modelData = $this->modelData();
-        Page::create($modelData);
+        Page::create($modelData)->tags()->attach($this->tags);
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -71,8 +71,9 @@ class Pages extends Component
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
-
-        Page::find($this->modelId)->update($this->modelData());
+        $page = Page::find($this->modelId);
+        $page->update($this->modelData());
+        $page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -114,11 +115,17 @@ class Pages extends Component
     private function loadModel()
     {
         $data = Page::find($this->modelId);
+        $this->tags = $data->tags->pluck('name')->toArray();
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+    }
+
+    public function getTagsByNames($names)
+    {
+        return Tag::whereIn('name', $names)->get();
     }
 
     public function createTag()

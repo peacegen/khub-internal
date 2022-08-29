@@ -88,10 +88,17 @@
                 <x-trix-field id="content" name="content"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
-            @include('components.select2-dropdown', ['name' => 'tags',
-            'options' => array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tag_list),
-            'config' => [],'
-            ])
+            <div>
+                <div wire:ignore>
+                    <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="tags">
+                        @foreach ($tag_list as $tag)
+                            <option value="{{ $tag }}">{{ $tag }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            {{-- @include('components.select2-dropdown', ['name' => 'tags',
+            'options' => array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tag_list)]) --}}
             {{-- {{ array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tags->toArray()) }} --}}
              {{-- ['name' => 'state', 'label' => 'State', 'data' => $states]) --}}
         </x-slot>
