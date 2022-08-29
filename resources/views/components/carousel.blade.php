@@ -93,14 +93,12 @@
     <div class="carousel js-flickity " wire:ignore>
         @foreach($items as $item)
             <div class="carousel-cell">
-
                 <x-carousel-card
                 content="{{ $item->title }}"
                 backgroundUrl="{{ $item->thumbnail_url ?: 'https://www.researchgate.net/profile/Donald-Bailey-5/publication/224624453/figure/fig1/AS:393833717223438@1470908683517/Original-colour-bar-static-test-image-used-in-analogue-television-II-METHODOLOGY.png' }}"
                 link="{{ URL::to('/'.$item->slug)}}">
                 </x-carousel-card>
             </div>
-
         @endforeach
     </div>
 </div>
