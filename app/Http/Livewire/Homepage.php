@@ -26,7 +26,7 @@ class Homepage extends Component
             return $this->loadPages();
         }
         foreach ($this->tags as $tag) {
-            $this->pages[$tag->name] = $tag->pages;
+            $this->pages[$tag->name] = ['name' => $tag->name, 'description' => $tag->description, 'items' => $tag->pages];
         }
 
         // $this->pages['none'] = Pages::where();
@@ -46,9 +46,9 @@ class Homepage extends Component
     // ];
         $data = $this->loadPagesByTag();
 
-        dd($data);
+        // dd($data);
         return view('livewire.homepage', [
-            'data' => $this->data
+            'data' => $data
         ]);
     }
 }

@@ -95,23 +95,12 @@
             <div class="carousel-cell">
 
                 <x-carousel-card
-                content="{{ $item['content'] }}"
-                backgroundUrl="{{ $item['image-url'] ?: 'https://www.researchgate.net/profile/Donald-Bailey-5/publication/224624453/figure/fig1/AS:393833717223438@1470908683517/Original-colour-bar-static-test-image-used-in-analogue-television-II-METHODOLOGY.png' }}">
+                content="{{ $item->title }}"
+                backgroundUrl="{{ $item->thumbnail_url ?: 'https://www.researchgate.net/profile/Donald-Bailey-5/publication/224624453/figure/fig1/AS:393833717223438@1470908683517/Original-colour-bar-static-test-image-used-in-analogue-television-II-METHODOLOGY.png' }}"
+                link="{{ URL::to('/'.$item->slug)}}">
                 </x-carousel-card>
             </div>
 
         @endforeach
-
-
-        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
-        <script type="text/javascript">
-            const flkty = new Flickity( '.carousel',{
-                // options
-            });
-            flkty.on( 'change', function( index ) {
-                livewire.emit('listener', index)
-            });
-        </script>
     </div>
 </div>
