@@ -4,10 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Page;
-use App\Http\Livewire\Trix;
+use App\Models\Tag;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
-use phpDocumentor\Reflection\Types\This;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Tonysm\RichTextLaravel\Livewire\WithRichTexts;
@@ -122,6 +121,18 @@ class Pages extends Component
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
 
+    public function createTag()
+    {
+        $this->validate();
+        $this->tags = Tag::create($this->modelData());
+        $this->reset();
+    }
+
+    public function readAllTagNamesAsArray()
+    {
+        return Tag::pluck('name')->toArray();
+    }
+
     /**
      * Returns the model data
      * @return array
@@ -216,10 +227,10 @@ class Pages extends Component
 
     public function render()
     {
-        return view('livewire.pages', [
+        // dd($this->readAllTagNamesAsArray());
+        return view('livewire.pages')->with([
             'data' => $this->read(),
+            'tag_list' => $this->readAllTagNamesAsArray(),
         ]);
     }
-
-
 }

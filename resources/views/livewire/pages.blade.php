@@ -88,6 +88,12 @@
                 <x-trix-field id="content" name="content"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
+            @include('components.select2-dropdown', ['name' => 'tags',
+            'options' => array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tag_list),
+            'config' => [],'
+            ])
+            {{-- {{ array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tags->toArray()) }} --}}
+             {{-- ['name' => 'state', 'label' => 'State', 'data' => $states]) --}}
         </x-slot>
 
         <x-slot name="footer">
