@@ -3,13 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tag;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Tags extends Component
 {
     use WithPagination;
-    
+
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
     public $modelId;
@@ -18,6 +19,9 @@ class Tags extends Component
      * Put your custom public properties here!
      */
 
+     public $name;
+     public $description;
+
     /**
      * The validation rules
      *
@@ -25,7 +29,8 @@ class Tags extends Component
      */
     public function rules()
     {
-        return [            
+        return [
+            'name' => ['required', Rule::Unique('tags', 'name')->ignore($this->modelId)],
         ];
     }
 
@@ -49,7 +54,9 @@ class Tags extends Component
      */
     public function modelData()
     {
-        return [          
+        return [
+            'name' => $this->name,
+            'description' => $this->description,
         ];
     }
 
@@ -138,7 +145,7 @@ class Tags extends Component
     {
         $this->modelId = $id;
         $this->modalConfirmDeleteVisible = true;
-    }    
+    }
 
     public function render()
     {

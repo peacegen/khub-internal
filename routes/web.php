@@ -49,6 +49,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             Route::get('/settings/roles', function () {
                 return view('admin.roles');
             })->name('roles');
+
+            Route::get('/settings/tags', function () {
+                return view('admin.tags');
+            })->name('tags');
         });
 
         Route::get('/', Homepage::class);

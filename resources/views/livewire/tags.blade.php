@@ -13,19 +13,16 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Colums1</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Column2</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Column3</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"></th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">                           
+                        <tbody class="bg-white divide-y divide-gray-200">
                             @if ($data->count())
                                 @foreach ($data as $item)
                                     <tr>
-                                        <td class="px-6 py-2">{{ 'Record1' }}</td>
-                                        <td class="px-6 py-2">{{ 'Record2' }}</td>
-                                        <td class="px-6 py-2">{{ 'Record3' }}</td>                                         
+                                        <td class="px-6 py-2">{{ $item->name }}</td>
+                                        <td class="px-6 py-2">{{ $item->description }}</td>
                                         <td class="px-6 py-2 flex justify-end">
                                             <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                                 {{ __('Update') }}
@@ -36,9 +33,9 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                            @else 
+                            @else
                                 <tr>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap" colspan="4">No Results Found</td>
+                                    <td class="px-6 py-4 text-sm whitespace-no-wrap" colspan="4">{{ __('No Results Found') }}</td>
                                 </tr>
                             @endif
                         </tbody>
@@ -47,7 +44,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="mt-5">
     {{ $data->links() }}
     </div>
@@ -55,23 +52,21 @@
     {{-- Modal Form --}}
     <x-jet-dialog-modal wire:model="modalFormVisible">
         <x-slot name="title">
-            {{ __('Create or Update Form') }}
+            {{ __('Tag') }}
         </x-slot>
 
         <x-slot name="content">
             <div class="mt-4">
-                <x-jet-label for="" value="{{ __('Label') }}" />
-                <x-jet-input wire:model="" id="" class="block mt-1 w-full" type="text" />
-                @error('') <span class="error">{{ $message }}</span> @enderror
-            </div>  
+                <x-jet-label for="name" value="{{ __('Name') }}" />
+                <x-jet-input wire:model="name" id="" class="block mt-1 w-full" type="text" />
+                @error('name') <span class="error">{{ $message }}</span> @enderror
+            </div>
             <div class="mt-4">
-                <x-jet-label for="" value="{{ __('Type') }}" />
-                <select wire:model="" id="" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    <option value="">Options1</option>
-                    <option value="">Option2</option>
-                </select>
-                @error('') <span class="error">{{ $message }}</span> @enderror
-            </div>      
+                <x-jet-label for="description" value="{{ __('Description') }}" />
+                <x-jet-input wire:model="description" id="description" class="block mt-1 w-full" type="text" />
+                @error('description') <span class="error">{{ $message }}</span> @enderror
+            </div>
+
         </x-slot>
 
         <x-slot name="footer">
@@ -87,7 +82,7 @@
                 <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
                     {{ __('Create') }}
                 </x-jet-danger-button>
-            @endif            
+            @endif
         </x-slot>
     </x-jet-dialog-modal>
 

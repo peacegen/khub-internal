@@ -27,6 +27,7 @@ class Pages extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
+    public $tags;
     /** @var array \Livewire\TemporaryUploadedFile[] */
     public $newFiles = [];
 

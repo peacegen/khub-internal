@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('page_tag', function (Blueprint $table) {
+            $table->id();
             $table->integer('page_id')->unsigned();
             $table->integer('tag_id')->unsigned();
             $table->timestamps();

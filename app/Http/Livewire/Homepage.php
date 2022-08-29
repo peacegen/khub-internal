@@ -4,14 +4,32 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Page;
+use App\Models\Tag;
+use PHPUnit\Framework\Constraint\IsEmpty;
+
 
 class Homepage extends Component
 {
     public $pages;
+    public $tags;
 
     public function loadPages() {
         // TODO add loading by tag
         $this->pages = Page::all();
+        return ['none' => $this->pages];
+    }
+
+    public function loadPagesByTag() {
+        $this->tags = Tag::all();
+        // dd($this->tags);
+        if (empty($this->tags)) {
+            return $this->loadPages();
+        }
+        foreach ($this->tags as $tag) {
+            $this->pages[$tag->name] = $tag->pages;
+        }
+
+        // $this->pages['none'] = Pages::where();
         return $this->pages;
     }
 
@@ -26,8 +44,9 @@ class Homepage extends Component
     //         'image-url' => null,
     //     ]
     // ];
-        $data = $this->loadPages();
+        $data = $this->loadPagesByTag();
 
+        dd($data);
         return view('livewire.homepage', [
             'data' => $this->data
         ]);
