@@ -50,8 +50,8 @@
                     <div class="mt-5 text-sm">
                          {!! $content !!}
                          @foreach ($attachments as $attachment)
-                         <a href="{{$attachment->url}}" download>
-                            <div> Download </div>
+                         <a href="{{$attachment->url}}" download={{$attachment->filename}}>
+                            <div> Download {{$attachment->filename}}</div>
                          </a>
                          @endforeach
                     </div>
