@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (config('config.using-roles')){
+        if (config('config.using-teams')){
             Schema::create('team_user', function (Blueprint $table) {
                 $table->id();
                 $table->foreignId('team_id');

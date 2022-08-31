@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
+            $table->boolean('has_tags')->default(false);
             $table->timestamps();
         });
     }
