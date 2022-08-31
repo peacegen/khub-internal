@@ -56,10 +56,8 @@ class Pages extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         $modelData = $this->modelData();
-        if (count($this->tags)){
-
-        }
-        Page::create($modelData)->tags()->attach($this->tags);
+        $page = Page::create($modelData);
+        $page->tags()->attach($this->tags);
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -122,6 +120,7 @@ class Pages extends Component
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
+        dd($this->content->attachments()->toArray());
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }

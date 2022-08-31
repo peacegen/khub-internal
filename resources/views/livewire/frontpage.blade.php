@@ -49,6 +49,11 @@
                 <article>
                     <div class="mt-5 text-sm">
                          {!! $content !!}
+                         @foreach ($attachments as $attachment)
+                         <a href="{{$attachment->url}}" download>
+                            <div> Download </div>
+                         </a>
+                         @endforeach
                     </div>
                 </article>
             </section>

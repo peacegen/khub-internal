@@ -33,6 +33,7 @@ class Frontpage extends Component
 
             $this->title = $page->title;
             $this->content = $page->content;
+            $this->attachments = array_map(fn($value) => $value->attachable, $page->content->attachments()->toArray());
         }
 
 
