@@ -9,4 +9,7 @@ return [
 
     // Locale
     'locale' => 'en-US',
+
+    // Default thumbnail url
+    'default-thumbnail' => 'https://placeimg.com/640/480/arch',
 ];
