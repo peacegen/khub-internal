@@ -14,8 +14,9 @@
             background: transparent;
         }
         .carousel-cell {
-            width: 350px;
-            height: 200px;
+            width: 50%;
+            height: 75%;
+            margin-right: 10px;
             /* flex-box, center image in cell */
             display: -webkit-box;
             display: -webkit-flex;
@@ -70,10 +71,10 @@
         }
         /* arrow color */
         .flickity-prev-next-button .arrow {
-            fill: white;
+            fill: black;
         }
         .flickity-prev-next-button.no-svg {
-            color: white;
+            color: black;
         }
         /* closer to edge */
         .flickity-prev-next-button.previous {
@@ -101,4 +102,17 @@
             </div>
         @endforeach
     </div>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    <script type="text/javascript">
+        const flkty = new Flickity( '.carousel',{
+            @foreach ($options as $key => $value)
+                {{ $key }}: {{ $value }},
+            @endforeach
+        });
+        flkty.on( 'change', function( index ) {
+            livewire.emit('listener', index)
+        });
+    </script>
 </div>
