@@ -56,6 +56,9 @@ class Pages extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         $modelData = $this->modelData();
+        if (count($this->tags)){
+
+        }
         Page::create($modelData)->tags()->attach($this->tags);
         $this->modalFormVisible = false;
         $this->reset();
@@ -152,6 +155,7 @@ class Pages extends Component
             'content' => $this->content,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            'has_tags' => count($this->tags) > 0,
         ];
     }
 
