@@ -96,7 +96,7 @@
             <div class="carousel-cell">
                 <x-carousel-card
                 content="{{ $item->title }}"
-                backgroundUrl="{{ $item->thumbnail_url ?: $default_url }}"
+                backgroundUrl="{{ $item->thumbnail_url ?: config('config.default-thumbnail') }}"
                 link="{{ URL::to('/'.$item->slug)}}">
                 </x-carousel-card>
             </div>

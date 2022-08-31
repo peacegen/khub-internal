@@ -11,5 +11,5 @@ return [
     'locale' => 'en-US',
 
     // Default thumbnail url
-    'default-thumbnail' => 'https://placeimg.com/640/480/arch',
+    'default-thumbnail' => 'https://pic.onlinewebfonts.com/svg/img_148071.png',
 ];
