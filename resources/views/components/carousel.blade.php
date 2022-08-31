@@ -1,5 +1,5 @@
 <div>
-    {{-- @push('css') --}}
+    @push('styles')
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
     <style>
@@ -87,7 +87,7 @@
             display: none;
         }
     </style>
-    {{-- @endpush --}}
+    @endpush
 
 
     <div class="carousel js-flickity " wire:ignore>

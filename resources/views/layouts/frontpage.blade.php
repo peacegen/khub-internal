@@ -19,8 +19,9 @@
         @livewireStyles
         <x-rich-text-trix-styles />
         <x:pharaonic-select2::scripts />
+        @stack('styles')
 
-        
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

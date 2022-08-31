@@ -17,6 +17,7 @@
         <!-- Styles -->
         @livewireStyles
         <x-rich-text-trix-styles />
+        @stack('styles')
 
         <x:pharaonic-select2::scripts />
 
