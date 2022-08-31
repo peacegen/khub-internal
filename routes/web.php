@@ -55,10 +55,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             })->name('tags');
         });
 
-        Route::get('/', Homepage::class);
         Route::get('/{urlslug}', Frontpage::class);
 
     });
+    
+    Route::get('/', Homepage::class);
 
 });
 

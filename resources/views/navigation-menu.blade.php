@@ -41,6 +41,7 @@
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+
                                         @if (Auth::user()->currentTeam)
                                             {{ Auth::user()->currentTeam->name }}
                                         @else
@@ -62,6 +63,7 @@
                                     </div>
 
                                     <!-- Team Settings -->
+
                                     @if(Auth::user()->currentTeam))
                                         <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                             {{ __('Team Settings') }}
@@ -80,10 +82,10 @@
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Switch Teams') }}
                                     </div>
-
                                     @foreach (Auth::user()->allTeams() as $team)
                                         <x-jet-switchable-team :team="$team" />
                                     @endforeach
+                                    
                                 </div>
                             </x-slot>
                         </x-jet-dropdown>

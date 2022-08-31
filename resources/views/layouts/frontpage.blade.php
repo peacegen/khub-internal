@@ -18,6 +18,9 @@
         <!-- Styles -->
         @livewireStyles
         <x-rich-text-trix-styles />
+        <x:pharaonic-select2::scripts />
+
+        
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
