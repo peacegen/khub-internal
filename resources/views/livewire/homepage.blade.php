@@ -8,10 +8,12 @@
             @include('components.carousel', ['items' => $tag['items']])
         </div>
     @endforeach
-    @endif
+    @else
     <div class="text-lg">
-        Nothing to see here.
+        {{ __('Nothing to see here') }}
     </div>
+    @endif
+
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 

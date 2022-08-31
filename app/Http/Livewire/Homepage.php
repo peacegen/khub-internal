@@ -15,21 +15,19 @@ class Homepage extends Component
 
     public function loadPages() {
         // TODO add loading by tag
-        $this->pages = Page::all();
-        return ['none' => $this->pages];
+        $pages = Page::where('has_tags', false)->get();
+        return ['name' => __('Uncategorized'), 'description' => __('Description'), 'items' => $pages];
     }
 
     public function loadPagesByTag() {
         $this->tags = Tag::all();
         // dd($this->tags);
-        if (empty($this->tags)) {
-            return $this->loadPages();
-        }
         foreach ($this->tags as $tag) {
             $this->pages[$tag->name] = ['name' => $tag->name, 'description' => $tag->description, 'items' => $tag->pages];
         }
+        $this->pages['Uncategorized'] = $this->loadPages();
 
-        // $this->pages['none'] = Pages::where();
+
         return $this->pages;
     }
 
@@ -49,6 +47,6 @@ class Homepage extends Component
         // dd($data);
         return view('livewire.homepage', [
             'data' => $data
-        ])->layout('layouts.frontpage');
+        ]);
     }
 }
