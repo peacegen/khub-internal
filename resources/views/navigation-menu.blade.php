@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <svg class="block h-9 w-auto" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path d="M12,2.1L1,12h3v9h7v-6h2v6h7v-9h3L12,2.1z M18,19h-3v-6H9v6H6v-8.8l6-5.4l6,5.4V19z"/></svg>
                     </a>
                 </div>
 
@@ -34,6 +34,7 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                @auth
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">
@@ -85,15 +86,16 @@
                                     @foreach (Auth::user()->allTeams() as $team)
                                         <x-jet-switchable-team :team="$team" />
                                     @endforeach
-                                    
                                 </div>
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
                 @endif
+                @endauth
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
+                    @auth
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -142,6 +144,23 @@
                             </form>
                         </x-slot>
                     </x-jet-dropdown>
+                    @else
+                    <div class="flex">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                                {{ __('Login') }}
+                            </x-jet-nav-link>
+                        </div>
+
+                        @if (Route::has('register'))
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                                {{ __('Register') }}
+                            </x-jet-nav-link>
+                        </div>
+                        @endif
+                    </div>
+                    @endauth
                 </div>
             </div>
 
@@ -167,6 +186,7 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
+            @auth
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="shrink-0 mr-3">
@@ -235,6 +255,8 @@
                     @endforeach
                 @endif
             </div>
+
+            @endauth
         </div>
     </div>
 </nav>
