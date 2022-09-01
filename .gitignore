@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+<<<<<<< HEAD
 .env
 .env.backup
 .phpunit.result.cache
@@ -123,3 +124,18 @@ dist
 # TernJS port file
 .tern-port
 
+=======
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+stubs/*.stub
+public/vendor/*
+package-lock.json
+>>>>>>> 6864569 (Test commit stuff)
