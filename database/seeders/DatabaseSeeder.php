@@ -32,6 +32,6 @@ class DatabaseSeeder extends Seeder
         $user->roles()->attach($admin);
         \App\Models\User::factory(10)->create();
         \App\Models\Page::factory(10)->create();
-        \App\Models\Tag::factory(10)->create();
+        \App\Models\Tag::factory(3)->create();
     }
 }

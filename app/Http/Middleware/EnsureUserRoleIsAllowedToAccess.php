@@ -18,8 +18,8 @@ class EnsureUserRoleIsAllowedToAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        $userRoles = auth()->user()->roles()->get();
-        dd($userRoles);
+        $userRoles = auth()->user()->roles()->get()->pluck('name')->toArray();
+        // dd($userRoles);
         $currentRouteName = Route::currentRouteName();
         $currentRouteAction = Route::currentRouteAction();
         $currentRoute = Route::current();
@@ -27,15 +27,15 @@ class EnsureUserRoleIsAllowedToAccess
 
         echo 'CurrentRouteName: ' . $currentRouteName;
         echo "CurrentRouteAction: " . $currentRouteAction;
-        $pages = foreach ($userRoles as $userRole) {
-            $permissions = $userRole->permissions()->get();
-            foreach ($permissions as $permission) {
-                if ($permission->page == $currentRouteName) {
-                    return $next($request);
-                }
-            }
-        }
-        if (in_array($currentRouteName, $this->userAccessRole()[])) {
+        // $pages = foreach ($userRoles as $userRole) {
+        //     $permissions = $userRole->permissions()->get();
+        //     foreach ($permissions as $permission) {
+        //         if ($permission->page == $currentRouteName) {
+        //             return $next($request);
+        //         }
+        //     }
+        // }
+        if (in_array($currentRouteName, $this->userAccessRole()['admin'])) {
             return $next($request);
         } else {
             abort(403, __('You are not allowed to access this page.'));
@@ -47,16 +47,16 @@ class EnsureUserRoleIsAllowedToAccess
     {
         // get the user role from the database
         // TODO Improve this
-        // return [
-        //     'user' => [
-        //         'dashboard'
-        //     ],
-        //     'admin' => [
-        //         'pages',
-        //         'dashboard',
-        //         'users',
-        //         'user-permissions',
-        //     ]
-        //     ];
+        return [
+            'user' => [
+                'dashboard'
+            ],
+            'admin' => [
+                'pages',
+                'dashboard',
+                'users',
+                'user-permissions',
+            ]
+            ];
     }
 }
