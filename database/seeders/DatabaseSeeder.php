@@ -14,21 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Role::create([
+        $permisson = \App\Models\Permission::create([
+            'name' => 'Manage Pages',
+            'description' => 'Can manage pages',
+            'page' => 'pages',
+        ]);
+        $admin = \App\Models\Role::create([
                 'name' => 'admin',
                 'description' => 'Administrator',
-                'can_edit_pages' => true,
-                'can_edit_users' => true,
-                'can_edit_permissions' => true,
-                'can_edit_roles' => true,
-                'can_edit_tags' => true,
-            ]);
-        \App\Models\User::create([
+        ]);
+        $admin->permissions()->attach($permisson);
+        $user = \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
-            'role' => 'admin',
         ]);
+        $user->roles()->attach($admin);
         \App\Models\User::factory(10)->create();
         \App\Models\Page::factory(10)->create();
         \App\Models\Tag::factory(10)->create();

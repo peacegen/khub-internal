@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,16 +18,24 @@ class EnsureUserRoleIsAllowedToAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        $userRole = auth()->user()->role;
+        $userRoles = auth()->user()->roles()->get();
+        dd($userRoles);
         $currentRouteName = Route::currentRouteName();
         $currentRouteAction = Route::currentRouteAction();
         $currentRoute = Route::current();
 
 
-        echo 'UserRole: ' . $userRole;
         echo 'CurrentRouteName: ' . $currentRouteName;
         echo "CurrentRouteAction: " . $currentRouteAction;
-        if (in_array($currentRouteName, $this->userAccessRole()[$userRole])) {
+        $pages = foreach ($userRoles as $userRole) {
+            $permissions = $userRole->permissions()->get();
+            foreach ($permissions as $permission) {
+                if ($permission->page == $currentRouteName) {
+                    return $next($request);
+                }
+            }
+        }
+        if (in_array($currentRouteName, $this->userAccessRole()[])) {
             return $next($request);
         } else {
             abort(403, __('You are not allowed to access this page.'));
@@ -36,17 +45,18 @@ class EnsureUserRoleIsAllowedToAccess
 
     private function userAccessRole()
     {
+        // get the user role from the database
         // TODO Improve this
-        return [
-            'user' => [
-                'dashboard'
-            ],
-            'admin' => [
-                'pages',
-                'dashboard',
-                'users',
-                'user-permissions',
-            ]
-            ];
+        // return [
+        //     'user' => [
+        //         'dashboard'
+        //     ],
+        //     'admin' => [
+        //         'pages',
+        //         'dashboard',
+        //         'users',
+        //         'user-permissions',
+        //     ]
+        //     ];
     }
 }
