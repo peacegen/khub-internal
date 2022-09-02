@@ -23,7 +23,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             'auth:sanctum',
             config('jetstream.auth_session'),
             'verified',
-            // 'accessrole',
+            'accessrole',
         ])->group(function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
@@ -34,23 +34,23 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('livewire.settings');
             })->name('settings');
 
-            Route::get('/settings/pages', function () {
+            Route::get('/admin/pages', function () {
                 return view('admin.pages');
             })->name('pages');
 
-            Route::get('/settings/users', function () {
+            Route::get('/admin/users', function () {
                 return view('admin.users');
             })->name('users');
 
-            Route::get('/settings/permissions', function () {
+            Route::get('/admin/permissions', function () {
                 return view('admin.permissions');
             })->name('permissions');
 
-            Route::get('/settings/roles', function () {
+            Route::get('/admin/roles', function () {
                 return view('admin.roles');
             })->name('roles');
 
-            Route::get('/settings/tags', function () {
+            Route::get('/admin/tags', function () {
                 return view('admin.tags');
             })->name('tags');
         });
