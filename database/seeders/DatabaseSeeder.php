@@ -14,6 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Role::create([
+                'name' => 'admin',
+                'description' => 'Administrator',
+                'can_edit_pages' => true,
+                'can_edit_users' => true,
+                'can_edit_permissions' => true,
+                'can_edit_roles' => true,
+                'can_edit_tags' => true,
+            ]);
         \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
@@ -22,5 +31,6 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\User::factory(10)->create();
         \App\Models\Page::factory(10)->create();
+        \App\Models\Tag::factory(10)->create();
     }
 }

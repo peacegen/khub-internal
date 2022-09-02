@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-
-        if (config('config.using-roles')){
-            Schema::table('users', function (Blueprint $table) {
-                $table->string('role')->default('user')->after('id');
-            });
-        }
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('description');
+            $table->string('page');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -28,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropIfExists('role');
-        });
+        Schema::dropIfExists('permissions');
     }
 };
