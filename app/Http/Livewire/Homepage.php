@@ -23,9 +23,14 @@ class Homepage extends Component
         $this->tags = Tag::all();
         // dd($this->tags);
         foreach ($this->tags as $tag) {
-            $this->pages[$tag->name] = ['name' => $tag->name, 'description' => $tag->description, 'items' => $tag->pages];
+            if($tag->pages->count() > 0) {
+                $this->pages[$tag->name] = ['name' => $tag->name, 'description' => $tag->description, 'items' => $tag->pages];
+            }
         }
-        $this->pages['Uncategorized'] = $this->loadPages();
+        $pages = $this->loadPages();
+        if ($pages['items']->count() > 0){
+            $this->pages['Uncategorized'] = $pages;
+        }
 
 
         return $this->pages;
