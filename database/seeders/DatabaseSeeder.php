@@ -22,9 +22,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         $role = Role::create(['name' => 'admin']);
+        $super = Role::create(['name' => 'super-admin']);
         $permission = Permission::create(['name' => 'edit pages']);
         $role->givePermissionTo($permission);
-        $user->assignRole($role);
+        $user->assignRole($super);
         \App\Models\User::factory(10)->create();
         \App\Models\Page::factory(10)->create();
         \App\Models\Tag::factory(3)->create();
