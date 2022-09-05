@@ -23,6 +23,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             'auth:sanctum',
             config('jetstream.auth_session'),
             'verified',
+            'role:super-admin'
         ])->group(function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
@@ -51,11 +52,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 
             Route::get('/admin/tags', function () {
                 return view('admin.tags');
-            })->name('tags');
+            })->name('tags')->middleware(['permission:edit tags']);
         });
 
         Route::get('/{urlslug}', Frontpage::class);
-
     });
 
     Route::post('attachments', function () {
