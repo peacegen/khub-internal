@@ -90,6 +90,12 @@
             </div>
             <div>
                 <div wire:ignore>
+                    {{-- @include('components.select2-dropdown', [
+                        'name' => 'tags',
+                        'options' => {{ $tag_list }},
+                        'selected' => {{ $tags }},
+                        'placeholder' => 'Select Parent Page',
+                    ]) --}}
                     <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="tags">
                         @foreach ($tag_list as $tag)
                             <option value="{{ $tag }}">{{ $tag }}</option>

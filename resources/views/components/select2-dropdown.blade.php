@@ -2,7 +2,7 @@
     <div wire:ignore>
         <select class="select2" name={{ $name }}>
             @foreach ($options as $option)
-                <option value="{{ $option['value'] }}">{{ $option['text'] }}</option>
+                <option value="{{ $option }}">{{ $option }}</option>
             @endforeach
         </select>
     </div>
