@@ -57,7 +57,7 @@ class Pages extends Component
         $this->unassignDefaultNotFoundPage();
         $modelData = $this->modelData();
         $page = Page::create($modelData);
-        $page->tags()->attach($this->tags);
+        $page->tags()->attach(Tag::whereIn('name', $this->tags)->get());
         $this->modalFormVisible = false;
         $this->reset();
     }
