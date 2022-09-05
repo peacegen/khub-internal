@@ -18,7 +18,7 @@ class EnsureUserRoleIsAllowedToAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        $userRoles = auth()->user()->roles()->get()->pluck('name')->toArray();
+        $user = $request->user();
         // dd($userRoles);
         $currentRouteName = Route::currentRouteName();
         $currentRouteAction = Route::currentRouteAction();
@@ -27,6 +27,7 @@ class EnsureUserRoleIsAllowedToAccess
 
         echo 'CurrentRouteName: ' . $currentRouteName;
         echo "CurrentRouteAction: " . $currentRouteAction;
+        echo "CurrentUserRole" . $request->user()->role;
         // $pages = foreach ($userRoles as $userRole) {
         //     $permissions = $userRole->permissions()->get();
         //     foreach ($permissions as $permission) {
@@ -35,7 +36,13 @@ class EnsureUserRoleIsAllowedToAccess
         //         }
         //     }
         // }
-        if (in_array($currentRouteName, $this->userAccessRole()['admin'])) {
+        // if (in_array($currentRouteName, $this->userAccessRole()['admin'])) {
+        //     return $next($request);
+        // } else {
+        //     abort(403, __('You are not allowed to access this page.'));
+        // }
+
+        if ($currentRouteName == 'pages' && $user->can('edit pages')) {
             return $next($request);
         } else {
             abort(403, __('You are not allowed to access this page.'));

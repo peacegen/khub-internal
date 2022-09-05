@@ -61,3 +61,4 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+}
