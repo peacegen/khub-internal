@@ -12,31 +12,33 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @stack('scripts')
 
-        <!-- Scripts -->
-        @yield('carousel-styles')
-        @yield('select2-scripts')
 
         <!-- Styles -->
-
-        <x-rich-text-trix-styles />
         @livewireStyles
+        <x-rich-text-trix-styles />
         @stack('styles')
 
-
+        <x:pharaonic-select2::scripts />
 
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        @role('admin|super-admin')
-        @livewire('admin-menu')
-        @else
-        {{-- @livewire('navigation-menu') --}}
-        @endrole
-
         <div class="min-h-screen bg-gray-100">
+            @role('admin|super-admin')
+                @livewire('navigation-menu')
+            @endrole
+
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}
