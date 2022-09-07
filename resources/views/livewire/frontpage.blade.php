@@ -11,7 +11,7 @@
         </div>
         <div class="h-12 w-full flex items-center">
             <a href="{{ url('/')}}" class="w-full">
-                <x-icons.logo color="gray-400"/>
+                <x-icons.logo fill="fill-gray-400"/>
             </a>
         </div>
         <div class="flex justify-end sm:w-8/12">
