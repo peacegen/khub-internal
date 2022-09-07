@@ -33,7 +33,8 @@
         @role('admin|super-admin')
         @livewire('admin-menu')
         @else
-        {{-- @livewire('navigation-menu') --}}
+
+        <x-nav-menu/>
         @endrole
 
         <div class="min-h-screen bg-gray-100">

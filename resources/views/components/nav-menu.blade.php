@@ -10,7 +10,7 @@
             </button>
         </div>
         <div class="h-12 w-full flex items-center">
-            <a href="{{ url('/')}}" class="w-full">
+            <a href="{{ url('/') }}" class="w-full">
                 <x-icons.logo fill="fill-gray-400"/>
             </a>
         </div>
@@ -18,7 +18,7 @@
             {{-- Top Navigation --}}
             <ul class="hidden sm:flex sm:text-left text-gray-200 text-xs">
                 @foreach ($topNavLinks as $item)
-                    <a href="{{ url('/'.$item->slug) }}">
+                    <a href="{{ $item->url }}">
                         <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li>
                     </a>
                 @endforeach
@@ -31,7 +31,7 @@
             {{-- Desktop Web View --}}
             <ul class="hidden text-gray-200 text-xs sm:block sm:text-left">
                 @foreach ($sideBarLinks as $item)
-                    <a href="{{ url('/'.$item->slug) }}">
+                    <a href="{{ $item->url }}">
                         <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li>
                     </a>
                 @endforeach
@@ -40,7 +40,7 @@
             <div :class="show ? 'block' : 'hidden'" class="pb-3 divide-y divide-gray-800 block sm:hidden">
             <ul class="text-gray-200 text-sm">
                 @foreach ($sideBarLinks as $item)
-                    <a href="{{ url('/'.$item->slug) }}">
+                    <a href="{{ $item->url }}">
                         <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li>
                     </a>
                 @endforeach
@@ -48,7 +48,7 @@
                 {{-- Top Navigation Mobile Web View --}}
                 <ul class="text-gray-200 text-sm">
                     @foreach ($topNavLinks as $item)
-                        <a href="{{ url('/'.$item->slug) }}">
+                        <a href="{{ $item->url }}">
                             <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li>
                         </a>
                     @endforeach
