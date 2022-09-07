@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/">
-                    <x-logo/>
+                    <x-icons.logo/>
                     </a>
                 </div>
 

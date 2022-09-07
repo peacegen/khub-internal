@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/">
-                    <x-logo/>
+                    <a href="{{ url('/') }}">
+                    <x-icons.logo/>
                     </a>
                 </div>
             </div>
