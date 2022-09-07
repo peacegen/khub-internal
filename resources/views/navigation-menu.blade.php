@@ -9,23 +9,6 @@
                     <x-logo/>
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('pages') }}" :active="request()->routeIs('pages')">
-                        {{ __('Pages') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
-                        {{ __('Users') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('roles') }}" :active="request()->routeIs('roles')">
-                        {{ __('Roles') }}
-                    </x-jet-nav-link>
-                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

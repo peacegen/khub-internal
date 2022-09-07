@@ -31,6 +31,8 @@
         <x-jet-banner />
 
         @role('admin|super-admin')
+        @livewire('admin-menu')
+        @else
         @livewire('navigation-menu')
         @endrole
 
