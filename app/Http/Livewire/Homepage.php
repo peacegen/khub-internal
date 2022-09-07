@@ -52,6 +52,6 @@ class Homepage extends Component
         // dd($data);
         return view('livewire.homepage', [
             'data' => $data
-        ]);
+        ])->layout('layouts.frontpage');
     }
 }
