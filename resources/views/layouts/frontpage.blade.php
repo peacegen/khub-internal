@@ -12,19 +12,30 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('scripts')
 
-        @trixassets
+        <!-- Scripts -->
+        @yield('carousel-styles')
+        @yield('select2-scripts')
 
         <!-- Styles -->
-        @livewireStyles
+
         <x-rich-text-trix-styles />
-        <x:pharaonic-select2::scripts />
+        @livewireStyles
         @stack('styles')
+
 
 
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
+
+        @role('admin|super-admin')
+        @livewire('admin-menu')
+        @else
+
+        <x-nav-menu/>
+        @endrole
 
         <div class="min-h-screen bg-gray-100">
             <!-- Page Content -->

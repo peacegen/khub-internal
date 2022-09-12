@@ -17,6 +17,7 @@
         "mcamara/laravel-localization": "^1.7",
         "mews/purifier": "^3.3",
         "pharaonic/livewire-select2": "^1.1",
+        "spatie/laravel-permission": "^5.5",
         "te7a-houdini/laravel-trix": "^2.0",
         "tonysm/rich-text-laravel": "^1.6"
     },

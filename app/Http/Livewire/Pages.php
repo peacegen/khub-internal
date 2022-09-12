@@ -57,7 +57,7 @@ class Pages extends Component
         $this->unassignDefaultNotFoundPage();
         $modelData = $this->modelData();
         $page = Page::create($modelData);
-        $page->tags()->attach($this->tags);
+        $page->tags()->attach(Tag::whereIn('name', $this->tags)->get());
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -120,7 +120,6 @@ class Pages extends Component
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
-        dd($this->content->attachments()->toArray());
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
@@ -241,6 +240,6 @@ class Pages extends Component
         return view('livewire.pages')->with([
             'data' => $this->read(),
             'tag_list' => $this->readAllTagNamesAsArray(),
-        ]);
+        ])->layout('layouts.frontpage');
     }
 }

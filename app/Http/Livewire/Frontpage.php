@@ -14,7 +14,6 @@ class Frontpage extends Component
     public function mount($urlslug=null)
     {
         $this->retrieveContent($urlslug);
-
     }
 
     public function retrieveContent($urlslug)
@@ -23,11 +22,11 @@ class Frontpage extends Component
 
         if ($customHome) {
             if (empty($urlslug)) {
-                $page = Page::where('is_default_home', true)->first();
+                return redirect()->route('/');
             } else {
                 $page = Page::where('slug', $urlslug)->first();
                 if (!$page) {
-                    $page = Page::where('is_default_not_found', true)->first();
+                    return abort(404);
                 }
             }
 
@@ -39,20 +38,9 @@ class Frontpage extends Component
 
     }
 
-    private function sideNavLinks() {
-        return ([new Link('Home', 'home'), new Link('Settings', 'settings')]);
-    }
-
-    private function topNavLinks() {
-        return ([new Link('Home', 'home'), new Link('Settings', 'settings')]);
-    }
-
     public function render()
     {
-        return view('livewire.frontpage', [
-            'sideBarLinks' => $this->sideNavLinks(),
-            'topNavLinks' => $this->topNavLinks(),
-        ])->layout('layouts.frontpage');
+        return view('livewire.frontpage')->layout('layouts.frontpage');
     }
 }
 
