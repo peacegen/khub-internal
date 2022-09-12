@@ -19,7 +19,7 @@
             <ul class="hidden sm:flex sm:text-left text-gray-200 text-xs">
                 @foreach ($topNavLinks as $item)
                     <a href="{{ $item['url'] }}">
-                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item['label'] }}</li>
+                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ __(__($item['label'])) }}</li>
                     </a>
                 @endforeach
             </ul>
@@ -32,7 +32,7 @@
             <ul class="hidden text-gray-200 text-xs sm:block sm:text-left">
                 @foreach ($sideBarLinks as $item)
                     <a href="{{ $item['url'] }}">
-                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item['label'] }}</li>
+                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ __($item['label']) }}</li>
                     </a>
                 @endforeach
             </ul>
@@ -41,7 +41,7 @@
             <ul class="text-gray-200 text-sm">
                 @foreach ($sideBarLinks as $item)
                     <a href="{{ $item['url'] }}">
-                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item['label'] }}</li>
+                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ __($item['label']) }}</li>
                     </a>
                 @endforeach
             </ul>
@@ -49,7 +49,7 @@
                 <ul class="text-gray-200 text-sm">
                     @foreach ($topNavLinks as $item)
                         <a href="{{ $item['url'] }}">
-                            <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item['label'] }}</li>
+                            <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ __($item['label']) }}</li>
                         </a>
                     @endforeach
                 </ul>
