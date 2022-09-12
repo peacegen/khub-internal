@@ -1,4 +1,4 @@
-<div class="flex justify-center flex-col items-center mt-4">
+<div class="flex justify-center flex-col items-center">
     {{-- // TODO Work more on the homepage --}}
     @if ($data && count($data))
     @foreach ($data as $tag)
