@@ -2,11 +2,16 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Route;
 
 class NavMenu extends Component
 {
+
+    //the array to hold the links
+    public $links = [];
+
     /**
      * Create a new component instance.
      *
@@ -19,12 +24,47 @@ class NavMenu extends Component
 
 
     public function getSideBarLinks(){
-        return ([new Link('Home', url('home')), new Link('Settings', url('settings'))]);
+        return [[
+            'label' => 'Home',
+            'url' => url('home'),
+        ],
+        [
+            'label' => 'Settings',
+            'url' => url('settings'),
+        ]];
     }
 
     public function getTopNavLinks(){
-        return ([new Link('Pages', url('pages')), new Link('Root', url('/'))]);
-    }
+        $links = [[
+            'label' => __('Home'),
+            'url' => url('/'),
+        ],
+        [
+            'label' => __('Pages'),
+            'url' => url('pages'),
+        ]];
+        //check if user is already logged in
+        if (Auth::check()) {
+            //if user is logged in, show logout link
+            // add to links array
+            $links[] = [
+                'label' => __('Logout'),
+                'url' => url('logout'),
+            ];
+
+        } else {
+            //if user is not logged in, show login link
+            $links[] = [
+                'label' => __('Login'),
+                'url' => url('login'),
+            ];
+            $links[] = [
+                'label' => __('Register'),
+                'url' => url('register'),
+            ];
+        }
+        return $links;
+     }
 
     /**
      * Get the view / contents that represent the component.

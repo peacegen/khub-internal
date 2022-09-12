@@ -38,20 +38,9 @@ class Frontpage extends Component
 
     }
 
-    private function sideNavLinks() {
-        return ([new Link('Home', 'home'), new Link('Settings', 'settings')]);
-    }
-
-    private function topNavLinks() {
-        return ([new Link('Home', 'home'), new Link('Settings', 'settings')]);
-    }
-
     public function render()
     {
-        return view('livewire.frontpage', [
-            'sideBarLinks' => $this->sideNavLinks(),
-            'topNavLinks' => $this->topNavLinks(),
-        ])->layout('layouts.frontpage');
+        return view('livewire.frontpage')->layout('layouts.frontpage');
     }
 }
 
