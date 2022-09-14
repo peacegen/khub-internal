@@ -11,5 +11,5 @@ return [
     'locale' => 'en-US',
 
     // Default thumbnail url
-    'default-thumbnail' => asset('assets/img/default-background.jpg'),
+    'default-thumbnail' => env('APP_URL').'/assets/img/default-background.jpg',
 ];
