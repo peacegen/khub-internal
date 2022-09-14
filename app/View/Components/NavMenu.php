@@ -24,21 +24,26 @@ class NavMenu extends Component
 
 
     public function getSideBarLinks(){
-        return [[
-            'label' => 'Home',
-            'url' => url('home'),
-        ],
-        [
-            'label' => 'Settings',
-            'url' => url('settings'),
-        ]];
+        $links = [];
+
+        if(Auth::check()){
+            $links[] = [
+                'label' => __('Profile'),
+                'url' => route('profile.show'),
+            ];
+            if(Auth::user()->hasRole('admin')){
+                $links[] = [
+                    'label' => 'Admin',
+                    'url' => url('admin'),
+                ];
+            }
+        }
+
+        return $links;
     }
 
     public function getTopNavLinks(){
-        $links = [[
-            'label' => __('Home'),
-            'url' => url('/'),
-        ],
+        $links = [
         [
             'label' => __('Pages'),
             'url' => url('pages'),
@@ -46,10 +51,9 @@ class NavMenu extends Component
         //check if user is already logged in
         if (Auth::check()) {
             //if user is logged in, show logout link
-            // add to links array
             $links[] = [
                 'label' => __('Logout'),
-                'url' => url('logout'),
+                'url' => route('logout'),
             ];
 
         } else {
@@ -80,13 +84,3 @@ class NavMenu extends Component
     }
 }
 
-class Link {
-    public $url;
-    public $label;
-
-    public function __construct($label, $url)
-    {
-        $this->label = $label;
-        $this->url = $url;
-    }
-}

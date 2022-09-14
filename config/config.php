@@ -11,5 +11,5 @@ return [
     'locale' => 'en-US',
 
     // Default thumbnail url
-    'default-thumbnail' => 'https://via.placeholder.com/150',
+    'default-thumbnail' => env('APP_URL').'/assets/img/default-background.jpg',
 ];
