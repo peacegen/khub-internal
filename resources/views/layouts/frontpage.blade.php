@@ -30,12 +30,13 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        @role('admin|super-admin')
-        @livewire('admin-menu')
+        @hasrole('admin|super-admin')
+        <x-admin-menu/>
+        
         @else
 
         <x-nav-menu/>
-        @endrole
+        @endhasrole
 
         <div class="min-h-screen bg-gray-100">
             <!-- Page Content -->
