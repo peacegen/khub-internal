@@ -54,11 +54,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.tags');
             })->name('tags')->middleware(['permission:edit tags']);
         });
-
+        // Route::get('/{urlslug}/edit', Homepage::class);
         Route::get('/{urlslug}', Frontpage::class);
     });
 
-    Route::post('attachments', function () {
+    Route::post('trix-attachments', function () {
         request()->validate([
             'attachment' => ['required', 'file'],
         ]);

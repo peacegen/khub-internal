@@ -15,7 +15,7 @@
         upload(event) {
             const data = new FormData();
             data.append('attachment', event.attachment.file);
-            window.axios.post('/attachments', data, {
+            window.axios.post('/trix-attachments', data, {
                 onUploadProgress(progressEvent) {
                     event.attachment.setUploadProgress(
                         progressEvent.loaded / progressEvent.total * 100

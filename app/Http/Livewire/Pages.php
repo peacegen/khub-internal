@@ -27,6 +27,7 @@ class Pages extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     public $tags = [];
+    public $img;
     /** @var array \Livewire\TemporaryUploadedFile[] */
     public $newFiles = [];
 
@@ -41,6 +42,7 @@ class Pages extends Component
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
             'content' => 'required',
+            'img' => 'image',
         ];
     }
 
@@ -52,6 +54,7 @@ class Pages extends Component
 
     public function create()
     {
+        $this->img->store('thumbnails');
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
@@ -120,6 +123,7 @@ class Pages extends Component
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
+        $this->thumbnail_url = $data->thumbnail_url;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
@@ -153,6 +157,7 @@ class Pages extends Component
             'content' => $this->content,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            'thumbnail_url' => $this->thumbnail_url,
             'has_tags' => count($this->tags) > 0,
         ];
     }

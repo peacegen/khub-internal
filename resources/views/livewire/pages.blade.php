@@ -103,6 +103,11 @@
                     </select>
                 </div>
             </div>
+            {{-- //TODO Fix thumbnail upload --}}
+            {{-- <div>
+                <input type="file" wire:model="img">
+                @error('photo') <span class="error">{{ $message }}</span> @enderror
+            </div> --}}
             {{-- @include('components.select2-dropdown', ['name' => 'tags',
             'options' => array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tag_list)]) --}}
             {{-- {{ array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tags->toArray()) }} --}}
