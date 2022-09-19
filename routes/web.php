@@ -58,7 +58,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('/{urlslug}', Frontpage::class);
     });
 
-    Route::post('trix-attachments', function () {
+    Route::post('attachments', function () {
         request()->validate([
             'attachment' => ['required', 'file'],
         ]);
