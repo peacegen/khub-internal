@@ -1,3 +1,3 @@
 <div class="mx-auto">
-    <x-page-form/>
+    <x-page-form :urlslug="$urlslug"/>
 </div>
