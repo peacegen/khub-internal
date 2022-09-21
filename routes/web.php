@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EditPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\Homepage;
@@ -54,7 +55,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.tags');
             })->name('tags')->middleware(['permission:edit tags']);
         });
-        // Route::get('/{urlslug}/edit', Homepage::class);
+        Route::get('/{urlslug}/edit', EditPage::class);
         Route::get('/{urlslug}', Frontpage::class);
     });
 
@@ -63,7 +64,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             'attachment' => ['required', 'file'],
         ]);
 
-        $path = request()->file('attachment')->store('trix-attachments', 'public');
+        $path = request()->file('attachment')->store('attachments', 'public');
 
         return [
             'image_url' => Storage::disk('public')->url($path),
