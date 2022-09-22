@@ -36,10 +36,10 @@
         </x-slot>
 
         <x-slot name="actions">
-            <x-jet-secondary-button wire:click="$toggle('modalFormVisible')" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="cancel" wire:loading.attr="disabled">
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
-            @isset ($modelId)
+            @isset ($page->id)
                 <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
                     {{ __('Update') }}
                 </x-jet-button>

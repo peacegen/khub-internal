@@ -15,6 +15,7 @@ class PageForm extends Component
     public $page;
     public $urlslug;
 
+    public $id;
     public $title;
     public $content;
     public $slug;
@@ -22,10 +23,12 @@ class PageForm extends Component
 
 
 
-    protected $rules = [
-        'page.title' => 'required',
-        'page.slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
-    ];
+    function rules (){
+        return [
+            'page.title' => 'required',
+            'page.slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->modelId)],
+        ];
+    }
 
 
     /**
@@ -42,6 +45,7 @@ class PageForm extends Component
     {
         $model = Page::where('slug', $slug)->first();
         $this->page = $model;
+        $this->id = $model->id;
         $this->title = $model->title;
         $this->slug = $model->slug;
         $this->content = $model->content;
@@ -53,6 +57,10 @@ class PageForm extends Component
      */
     public function tag_list(){
         return Tag::all()->pluck('name')->toArray();
+    }
+
+    public function cancel(){
+        return redirect()->route('pages.index');
     }
 
     /**
