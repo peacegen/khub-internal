@@ -8,6 +8,7 @@ use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Page extends Model implements HasMedia
 {
@@ -31,7 +32,13 @@ class Page extends Model implements HasMedia
     }
 
     public function getThumbnailUrlAttribute(){
-        return $this->getFirstMediaUrl('thumbnail');
+        return $this->getFirstMedia('thumbnail') ? $this->getFirstMedia('thumbnail')->getUrl('thumb') : config('config.default-thumbnail');
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->fit('crop', 1280, 720);
     }
 
 }
