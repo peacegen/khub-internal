@@ -6,19 +6,24 @@ use Livewire\Component;
 use App\Models\Page;
 use App\Models\Tag;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
 
 class EditPage extends Component
 {
+
+    use WithFileUploads;
+
     public $urlslug;
     public $is_new;
     public $page;
-
     public $tag_list;
 
     public $title;
     public $content;
     public $slug;
     public $tags = [];
+    public $thumbnail;
+    public $thumbnail_url;
 
     public function mount($urlslug = null, $is_new = false)
     {
@@ -41,6 +46,7 @@ class EditPage extends Component
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->page->id)],
             'content' => 'required',
+            'thumbnail' => 'image',
         ];
     }
 
@@ -52,13 +58,17 @@ class EditPage extends Component
         $this->slug = $model->slug;
         $this->content = $model->content;
         $this->tags = $model->tags->pluck('name')->toArray();
+        $this->thumbnail = $model->thumbnail;
+        $this->thumbnail_url = $model->thumbnail_url;
     }
 
     public function update()
     {
         $this->validate();
-        $this->page->update($this->modelData());
         $this->page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
+        $this->page->addMedia($this->thumbnail)->toMediaCollection('thumbnail');
+        $this->thumbnail_url = $this->page->get_media('thumbnail')->getFullUrl();
+        $this->page->update($this->modelData());
         session()->flash('flash.banner', 'Page saved successfully');
         session()->flash('flash.bannerStyle', 'success');
         redirect()->to('/pages/'.$this->page->slug);

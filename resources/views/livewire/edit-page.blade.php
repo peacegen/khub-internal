@@ -25,6 +25,13 @@
                     </select>
                 </div>
             @endisset
+            <div class="mb-3">
+                <input type="file" wire:model="thumbnail" class="">
+                <div>
+                    @error('thumbnail') <span class="text-sm text-red-500 italic">{{ $message }}</span>@enderror
+                </div>
+                <div wire:loading wire:target="thumbnail" class="text-sm italic">Uploading...</div>
+            </div>
             @if (!$is_new)
                 <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
                     {{ __('Update') }}

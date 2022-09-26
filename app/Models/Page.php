@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Page extends Model
+class Page extends Model implements HasMedia
 {
     use HasFactory;
     use HasRichText;
-    use HasMedia;
+    use InteractsWithMedia;
 
     protected $guarded = [];
 
@@ -21,6 +22,11 @@ class Page extends Model
 
     public function tags() {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('thumbnail')->singleFile()->useFallbackUrl('/img/default-thumbnail.png');
     }
 
 }
