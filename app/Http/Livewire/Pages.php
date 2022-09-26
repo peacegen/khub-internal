@@ -54,7 +54,10 @@ class Pages extends Component
 
     public function create()
     {
-        $this->img->store('thumbnails');
+        if ($this->img) {
+            $this->newFiles = $this->img;
+            $this->img = $this->img->store('thumbnails');
+        }
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();

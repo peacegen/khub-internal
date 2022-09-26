@@ -1,15 +1,6 @@
 <div>
-    <x-jet-form-section submit="createPage">
-        <x-slot name="title">
-            {{ __('Save Page') }}
-        </x-slot>
-
-        <x-slot name="description">
-            {{ __('Create a new page.') }}
-        </x-slot>
-
-
-        <x-slot name="form">
+    <div class="mx-auto bg-gray-100 p-12 min-h-screen sm:w-8/12 md:w-9/12 lg:w-10/12">
+        <section class="divide-y text-gray-900">
             <div class="col-span-6">
                 <x-jet-label for="title" value="{{ __('Page Title') }}" />
                 <x-jet-input id="title" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="title" required />
@@ -19,6 +10,10 @@
                 <x-jet-label for="slug" value="{{ __('Slug') }}" />
                 <x-jet-input id="slug" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="slug" required />
                 @error('slug') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
+                <x-trix-field id="content" name="content" value=""/>
+                @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div>
             @isset($tag_list)
@@ -30,25 +25,6 @@
                     </select>
                 </div>
             @endisset
-            </div>
-        </x-slot>
-
-        <x-slot name="actions">
-            <x-jet-secondary-button wire:click="cancel" wire:loading.attr="disabled">
-                {{ __('Cancel') }}
-            </x-jet-secondary-button>
-            @isset ($page->id)
-                <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
-                    {{ __('Update') }}
-                </x-jet-button>
-            @else
-                <x-jet-button class="ml-2" wire:click="create" wire:loading.attr="disabled">
-                    {{ __('Create') }}
-                </x-jet-button>
-            @endisset
-        </x-slot>
-
-
-    </x-jet-form-section>
+        </section>
 </div>
 

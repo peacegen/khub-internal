@@ -97,7 +97,7 @@
                 <x-carousel-card
                 content="{{ $item->title }}"
                 backgroundUrl="{{ $item->thumbnail_url ?: config('config.default-thumbnail') }}"
-                link="{{ URL::to('/'.$item->slug)}}">
+                link="{{ URL::to('/pages/'.$item->slug)}}">
                 </x-carousel-card>
             </div>
         @endforeach
