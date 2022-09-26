@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Page;
 use App\Models\Tag;
+use Illuminate\Validation\Rule;
 
 class EditPage extends Component
 {
@@ -26,6 +27,21 @@ class EditPage extends Component
         if (!$this->is_new) {
             $this->loadModel($this->urlslug);
         }
+        $this->tag_list = Tag::all()->pluck('name')->toArray();
+    }
+
+    /**
+     * Validation rules
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->page->id)],
+            'content' => 'required',
+        ];
     }
 
     public function loadModel($slug)
@@ -35,7 +51,25 @@ class EditPage extends Component
         $this->title = $model->title;
         $this->slug = $model->slug;
         $this->content = $model->content;
-        $this->tags = $model->tags;
+        $this->tags = $model->tags->pluck('name')->toArray();
+    }
+
+    public function update()
+    {
+        $this->validate();
+        $this->page->update($this->modelData());
+        $this->page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
+        session()->flash('flash.banner', 'Page saved successfully');
+        session()->flash('flash.bannerStyle', 'success');
+        redirect()->to('/pages/'.$this->page->slug);
+    }
+
+    public function modelData(){
+        return [
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'content' => $this->content,
+        ];
     }
 
     /**
