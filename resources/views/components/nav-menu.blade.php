@@ -45,14 +45,14 @@
                     </a>
                 @endforeach
             </ul>
-                {{-- Top Navigation Mobile Web View --}}
-                <ul class="text-gray-200 text-sm">
-                    @foreach ($topNavLinks as $item)
-                        <a href="{{ $item['url'] }}">
-                            <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ __($item['label']) }}</li>
-                        </a>
-                    @endforeach
-                </ul>
+            {{-- Top Navigation Mobile Web View --}}
+            <ul class="text-gray-200 text-sm">
+                @foreach ($topNavLinks as $item)
+                    <a href="{{ $item['url'] }}">
+                        <li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ __($item['label']) }}</li>
+                    </a>
+                @endforeach
+            </ul>
             </div>
         </aside>
     </div>

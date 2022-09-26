@@ -10,7 +10,7 @@
     <table class="min-w-full divide-y divide-gray-200">
         <thead>
         <tr>
-            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Title") }}"</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Title") }}</th>
             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Link") }}</th>
             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Content") }}</th>
             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Action") }}</th>
@@ -36,7 +36,7 @@
             </td>
             <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content->toPlainText(), 50, '...') !!}</td>
             <td class="px-6 py-4 text-right text-sm">
-                <x-jet-button wire:click="updateShowModal({{ $item->id }})">
+                <x-jet-button wire:click="editPage({{ $item->id }})">
                     {{ __('Update') }}
                 </x-jet-button>
                 <x-jet-danger-button wire:click="deleteShowModal({{ $item->id }})">
@@ -103,6 +103,11 @@
                     </select>
                 </div>
             </div>
+            {{-- //TODO Fix thumbnail upload --}}
+            {{-- <div>
+                <input type="file" wire:model="img">
+                @error('photo') <span class="error">{{ $message }}</span> @enderror
+            </div> --}}
             {{-- @include('components.select2-dropdown', ['name' => 'tags',
             'options' => array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tag_list)]) --}}
             {{-- {{ array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tags->toArray()) }} --}}

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EditPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\Homepage;
@@ -38,6 +39,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.pages');
             })->name('pages')->middleware(['permission:edit pages']);
 
+            Route::get('/admin/pages/new', function () {
+                return view('livewire.edit-page', ['is_new' => true]);
+            })->middleware(['permission:edit pages']);
+
+            Route::get('/pages/{urlslug}/edit', EditPage::class)->middleware(['permission:edit pages']);
+
             Route::get('/admin/users', function () {
                 return view('admin.users');
             })->name('users')->middleware(['permission:edit users']);
@@ -54,8 +61,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.tags');
             })->name('tags')->middleware(['permission:edit tags']);
         });
-
-        Route::get('/{urlslug}', Frontpage::class);
+        Route::get('/pages/{urlslug}', Frontpage::class);
     });
 
     Route::post('attachments', function () {
@@ -63,7 +69,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             'attachment' => ['required', 'file'],
         ]);
 
-        $path = request()->file('attachment')->store('trix-attachments', 'public');
+        $path = request()->file('attachment')->store('attachments', 'public');
 
         return [
             'image_url' => Storage::disk('public')->url($path),

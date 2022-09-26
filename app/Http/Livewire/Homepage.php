@@ -24,7 +24,9 @@ class Homepage extends Component
         // dd($this->tags);
         foreach ($this->tags as $tag) {
             if($tag->pages->count() > 0) {
-                $this->pages[$tag->name] = ['name' => $tag->name, 'description' => $tag->description, 'items' => $tag->pages];
+                $this->pages[$tag->name] = ['name' => $tag->name,
+                'description' => $tag->description,
+                'items' => $tag->pages];
             }
         }
         $pages = $this->loadPages();
