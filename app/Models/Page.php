@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Page extends Model implements HasMedia
 {
@@ -26,7 +27,11 @@ class Page extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('thumbnail')->singleFile()->useFallbackUrl('/img/default-thumbnail.png');
+        $this->addMediaCollection('thumbnail')->singleFile()->useFallbackUrl(config('config.default-thumbnail'));
+    }
+
+    public function getThumbnailUrlAttribute(){
+        return $this->getFirstMediaUrl('thumbnail');
     }
 
 }

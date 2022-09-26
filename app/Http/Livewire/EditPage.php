@@ -67,7 +67,6 @@ class EditPage extends Component
         $this->validate();
         $this->page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
         $this->page->addMedia($this->thumbnail)->toMediaCollection('thumbnail');
-        $this->thumbnail_url = $this->page->get_media('thumbnail')->getFullUrl();
         $this->page->update($this->modelData());
         session()->flash('flash.banner', 'Page saved successfully');
         session()->flash('flash.bannerStyle', 'success');
