@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
+use Spatie\MediaLibrary\HasMedia;
 
 class Page extends Model
 {
     use HasFactory;
     use HasRichText;
+    use HasMedia;
 
     protected $guarded = [];
 
