@@ -103,6 +103,12 @@ class Pages extends Component
         $this->modalFormVisible = true;
     }
 
+    public function editPage($id)
+    {
+        $slug = Page::find($id)->slug;
+        redirect()->to('/pages/'.$slug.'/edit');
+    }
+
     /**
      * Shows the modal and updates it
      * @param $id the id of the model to update

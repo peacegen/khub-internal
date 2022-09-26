@@ -12,7 +12,7 @@
                 @error('slug') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
-                <x-trix-field id="content" name="content" value=""/>
+                <x-trix-field id="content" name="content" value="{!! $content !!}"/>
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div>

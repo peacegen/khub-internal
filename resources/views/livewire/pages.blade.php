@@ -36,7 +36,7 @@
             </td>
             <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content->toPlainText(), 50, '...') !!}</td>
             <td class="px-6 py-4 text-right text-sm">
-                <x-jet-button wire:click="updateShowModal({{ $item->id }})">
+                <x-jet-button wire:click="editPage({{ $item->id }})">
                     {{ __('Update') }}
                 </x-jet-button>
                 <x-jet-danger-button wire:click="deleteShowModal({{ $item->id }})">
