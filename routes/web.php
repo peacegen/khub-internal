@@ -4,6 +4,7 @@ use App\Http\Livewire\EditPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\Homepage;
+use App\Http\Livewire\PageList;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.tags');
             })->name('tags')->middleware(['permission:edit tags']);
         });
+        Route::get('/pages', PageList::class)->name('page-list');
         Route::get('/pages/{urlslug}', Frontpage::class);
     });
 
