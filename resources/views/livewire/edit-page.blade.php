@@ -19,11 +19,18 @@
             <div class="mb-4">
             @isset($tag_list)
                 <x-jet-label for="tags" value="{{ __('Tags') }}" />
-                <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="tags">
+                <div wire:ignore>
+                    <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="tags">
+                        @foreach ($tag_list as $tag)
+                        <option value="{{ $tag }}">{{ $tag }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                {{-- <select class="select2" multiple wire:model="tags">
                     @foreach ($tag_list as $tag)
                         <option value="{{ $tag }}">{{ $tag }}</option>
                     @endforeach
-                </select>
+                </select> --}}
             @endisset
             </div>
             <div class="mb-3">

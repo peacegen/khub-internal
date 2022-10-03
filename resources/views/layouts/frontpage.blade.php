@@ -12,7 +12,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Script stack -->
         @stack('scripts')
+        <!-- Select script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <x:pharaonic-select2::scripts />
 
         <!-- Scripts -->
         @yield('carousel-styles')
@@ -25,7 +30,12 @@
         <!-- Stacked Styles -->
         @stack('styles')
 
-
+        {{-- <script>
+            console.log("hello");
+            $(document).ready(function() {
+                $('.select2').select2();
+            });
+        </script> --}}
 
 
     </head>
