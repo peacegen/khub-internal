@@ -32,7 +32,7 @@
 
         @hasrole('admin|super-admin')
         <x-admin-menu/>
-        
+
         @else
 
         <x-nav-menu/>
@@ -47,6 +47,6 @@
 
         @stack('modals')
 
-        @livewireScripts
     </body>
+    @livewireScripts
 </html>
