@@ -16,13 +16,15 @@
 
         <!-- Scripts -->
         @yield('carousel-styles')
-        @yield('select2-scripts')
 
         <!-- Styles -->
 
         <x-rich-text-trix-styles />
         @livewireStyles
+
+        <!-- Stacked Styles -->
         @stack('styles')
+
 
 
 

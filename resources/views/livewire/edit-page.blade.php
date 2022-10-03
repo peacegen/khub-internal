@@ -19,7 +19,11 @@
             <div class="mb-4">
             @isset($tag_list)
                 <x-jet-label for="tags" value="{{ __('Tags') }}" />
-                <livewire:select2-dropdown :options="$tag_list" multiple="multiple" />
+                <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="tags">
+                    @foreach ($tag_list as $tag)
+                        <option value="{{ $tag }}">{{ $tag }}</option>
+                    @endforeach
+                </select>
             @endisset
             </div>
             <div class="mb-3">
