@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Page;
 use App\Helpers\Helper;
 use Illuminate\Support\Arr;
+use Barryvdh\Debugbar\Facade as Debugbar;
 
 class PageList extends Component
 {
@@ -22,7 +23,8 @@ class PageList extends Component
 
     public function render()
     {
-        if($this->selectedTags){
+        Debugbar::info($this->selectedTags);
+        if($this->selectedTags && $this->selectedTags[0] != ''){
             $this->pageList = Page::where('title', 'like', '%' . $this->search . '%')
                 ->whereHas('tags', function ($query) {
                     $query->whereIn('name', Arr::wrap($this->selectedTags));

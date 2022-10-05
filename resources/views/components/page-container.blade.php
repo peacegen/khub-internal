@@ -1,7 +1,7 @@
 <div>
 <div class="py-4 flex">
     <a href="{{ URL::to('/pages/'.$page->slug) }}" class="relative w-1/3">
-    <img src="{{ $page->thumbnail_url }}" class= alt="{{ $page->title }}"/>
+    <img src="{{ $page->thumbnail_url }}" class="" alt="{{ $page->title }}"/>
     </a>
     <div class="w-2/3">
         <a href="{{ URL::to('/pages/'.$page->slug) }}" class="relative">
