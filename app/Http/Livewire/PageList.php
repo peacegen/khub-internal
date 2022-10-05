@@ -17,6 +17,7 @@ class PageList extends Component
     public function mount()
     {
         $this->tag_list = Helper::getTagNameArray();
+        $this->selectedTags = [];
     }
 
     public function render()

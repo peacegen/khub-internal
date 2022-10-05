@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -17,9 +18,10 @@
         <!-- Select script -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <x:pharaonic-select2::scripts />
 
-        <!-- Scripts -->
+        <script src="{{ asset("vendor/pharaonic/pharaonic.select2.js") }}"></script>
+
+        <!-- Carousel Style -->
         @yield('carousel-styles')
 
         <!-- Styles -->
@@ -28,14 +30,7 @@
         @livewireStyles
 
         <!-- Stacked Styles -->
-        @stack('styles')
-
-        {{-- <script>
-            console.log("hello");
-            $(document).ready(function() {
-                $('.select2').select2();
-            });
-        </script> --}}
+        {{-- @stack('styles') --}}
 
 
     </head>
