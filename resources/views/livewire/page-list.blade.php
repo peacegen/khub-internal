@@ -1,6 +1,12 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <input type="text" wire:model="search" placeholder="Search pages..."/>
+        <select data-pharaonic="select2" data-component-id="{{ $this->id }}" data-placeholder="Select a tag..." wire:model="selectedTags">
+            <option value="">Select a tag...</option>
+            @foreach ($tag_list as $tag)
+            <option value="{{ $tag }}">{{ $tag }}</option>
+            @endforeach
+        </select>
         @forelse ($pages as $page)
             <div class="">
                 <x-page-container :page='$page'/>
