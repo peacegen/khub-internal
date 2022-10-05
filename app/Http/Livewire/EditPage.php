@@ -46,7 +46,7 @@ class EditPage extends Component
             'title' => 'required',
             'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->page->id)],
             'content' => 'required',
-            'thumbnail' => 'image',
+            'thumbnail' => 'image|nullable',
         ];
     }
 
@@ -66,7 +66,9 @@ class EditPage extends Component
     {
         $this->validate();
         $this->page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
-        $this->page->addMedia($this->thumbnail)->toMediaCollection('thumbnail');
+        if ($this->thumbnail){
+            $this->page->addMedia($this->thumbnail)->toMediaCollection('thumbnail');
+        }
         $this->page->update($this->modelData());
         session()->flash('flash.banner', 'Page saved successfully');
         session()->flash('flash.bannerStyle', 'success');

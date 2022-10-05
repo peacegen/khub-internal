@@ -6,7 +6,13 @@
         <div class="text-lg px-2">
         {{ $page->title }}
         </div>
-        <div class="text-sm py-2 px-2 truncate">
+        <div class="px-2 py-2 flex-row">
+        @foreach ($page->tags as $tag)
+            <x-tag-container :tag='$tag'/>
+                {{-- :link="$tag->link" --}}
+        @endforeach
+        </div>
+        <div class="text-md py-2 px-2 truncate">
         {{ $page->content->toPlainText() }}
         </div>
     </div>
