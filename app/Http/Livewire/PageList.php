@@ -18,12 +18,11 @@ class PageList extends Component
     public function mount()
     {
         $this->tag_list = Helper::getTagNameArray();
-        $this->selectedTags = [];
     }
 
     public function render()
     {
-        Debugbar::info($this->selectedTags);
+        // Debugbar::info($this->selectedTags);
         if($this->selectedTags && $this->selectedTags[0] != ''){
             $this->pageList = Page::where('title', 'like', '%' . $this->search . '%')
                 ->whereHas('tags', function ($query) {

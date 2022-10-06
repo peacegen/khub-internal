@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\Homepage;
 use App\Http\Livewire\PageList;
+use App\Http\Livewire\TagList;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         });
         Route::get('/pages', PageList::class)->name('page-list');
         Route::get('/pages/{urlslug}', Frontpage::class);
+        Route::get('/tags/{tag}', TagList::class)->name('tags');
     });
 
     Route::post('attachments', function () {
