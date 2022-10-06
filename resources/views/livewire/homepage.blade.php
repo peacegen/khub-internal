@@ -3,7 +3,11 @@
     @if ($data && count($data))
     @foreach ($data as $tag)
         <div class="w-3/4 origin-center py-2">
+            @if($tag['slug'])
+                <a class="py-2 text-lg" href="{{ route('tags', $tag['slug']) }}">{{ $tag['name'] }}</a>
+            @else
             <div class="py-2 text-lg">{{ $tag['name'] }}</div>
+            @endif
             <div class="py-2 text-sm">{{ $tag['description'] }}</div>
 
 

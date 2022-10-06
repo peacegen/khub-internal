@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\AdminPage;
 use App\Http\Livewire\EditPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Frontpage;
@@ -37,31 +38,33 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('livewire.settings');
             })->name('settings');
 
+            Route::get('/admin', AdminPage::class)->name('admin');
+
             Route::get('/admin/pages', function () {
                 return view('admin.pages');
-            })->name('pages')->middleware(['permission:edit pages']);
+            })->name('edit-pages')->middleware(['permission:edit pages']);
 
             Route::get('/admin/pages/new', function () {
                 return view('livewire.edit-page', ['is_new' => true]);
-            })->middleware(['permission:edit pages']);
+            })->name('edit-page')->middleware(['permission:edit pages']);
 
-            Route::get('/pages/{urlslug}/edit', EditPage::class)->middleware(['permission:edit pages']);
+            Route::get('/pages/{urlslug}/edit', EditPage::class)->middleware(['permission:edit pages'])->name('edit-page');
 
             Route::get('/admin/users', function () {
                 return view('admin.users');
-            })->name('users')->middleware(['permission:edit users']);
+            })->name('edit-users')->middleware(['permission:edit users']);
 
             Route::get('/admin/permissions', function () {
                 return view('admin.permissions');
-            })->name('permissions');
+            })->name('edit-permissions');
 
             Route::get('/admin/roles', function () {
                 return view('admin.roles');
-            })->name('roles');
+            })->name('edit-roles');
 
             Route::get('/admin/tags', function () {
                 return view('admin.tags');
-            })->name('tags')->middleware(['permission:edit tags']);
+            })->name('edit-tags')->middleware(['permission:edit tags']);
         });
         Route::get('/pages', PageList::class)->name('page-list');
         Route::get('/pages/{urlslug}', Frontpage::class)->name('page.show');

@@ -16,7 +16,7 @@ class Homepage extends Component
     public function loadPages() {
         // TODO add loading by tag
         $pages = Page::where('has_tags', false)->get();
-        return ['name' => __('Uncategorized'), 'description' => __('No Description'), 'items' => $pages];
+        return ['name' => __('Uncategorized'), 'description' => __('No Description'), 'items' => $pages, 'slug' => 'uncategorized'];
     }
 
     public function loadPagesByTag() {
@@ -26,6 +26,7 @@ class Homepage extends Component
             if($tag->pages->count() > 0) {
                 $this->pages[$tag->name] = ['name' => $tag->name,
                 'description' => $tag->description,
+                'slug' => $tag->slug,
                 'items' => $tag->pages];
             }
         }

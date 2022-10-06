@@ -80,6 +80,7 @@ class EditPage extends Component
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
+            'has_tags' => count($this->tags) > 0,
         ];
     }
 
