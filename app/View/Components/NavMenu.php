@@ -27,19 +27,28 @@ class NavMenu extends Component
     public function getSideBarLinks(){
         $links = [];
 
-        if(Auth::check()){
+        // if user is admin, add the admin link
+        if(Auth::check()) {
             $links[] = [
                 'label' => __('Profile'),
                 'url' => route('profile.show'),
             ];
-            if(Auth::user()->hasRole('admin')){
+            if(Auth::user()->hasRole(['admin', 'super-admin'])){
                 $links[] = [
-                    'label' => 'Admin',
+                    'label' => __('Admin'),
                     'url' => url('admin'),
                 ];
+
+                // if user is on a page, add the edit link
+                if(Route::currentRouteName() == 'page.show'){
+                    $links[] = [
+                        'label' => __('Edit Page'),
+                        'url' => url('/pages/' . Route::current()->parameter('urlslug') . '/edit'),
+                    ];
+                }
             }
         }
-
+        
         return $links;
     }
 
@@ -47,25 +56,7 @@ class NavMenu extends Component
         $links = [[
             'label' => __('Pages'),
             'url' => url('pages'),
-        ]];
-
-        // if user is admin, add the admin link
-        if(Auth::check() && Auth::user()->hasRole(['admin', 'super-admin'])){
-            $links[] = [
-                'label' => __('Admin'),
-                'url' => url('admin'),
-            ];
-
-            // if user is on a page, add the edit link
-            if(Route::currentRouteName() == 'page.show'){
-                $links[] = [
-                    'label' => __('Edit Page'),
-                    'url' => url('/pages/' . Route::current()->parameter('urlslug') . '/edit'),
-                ];
-            }
-        }
-
-
+        ]]; //start with the pages link
 
 
         //check if user is already logged in
