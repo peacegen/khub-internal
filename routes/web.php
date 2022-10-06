@@ -64,7 +64,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             })->name('tags')->middleware(['permission:edit tags']);
         });
         Route::get('/pages', PageList::class)->name('page-list');
-        Route::get('/pages/{urlslug}', Frontpage::class);
+        Route::get('/pages/{urlslug}', Frontpage::class)->name('page.show');
         Route::get('/tags/{tag}', TagList::class)->name('tags');
     });
 

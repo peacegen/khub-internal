@@ -37,13 +37,15 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        @hasrole('admin|super-admin')
+        {{-- @hasrole('admin|super-admin')
         <x-admin-menu/>
 
         @else
 
         <x-nav-menu/>
-        @endhasrole
+        @endhasrole --}}
+
+        <x-nav-menu/>
 
         <div class="min-h-screen bg-gray-100">
             <!-- Page Content -->
