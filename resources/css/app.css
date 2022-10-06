@@ -16,3 +16,8 @@
 .error {
     color: red;
 }
+
+/* .select2-selection-styling {
+    @apply border-2 border-gray-300 rounded;
+} */
+
