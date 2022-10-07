@@ -29,7 +29,7 @@
                 <a
                     class="text-indigo-600 hover:text-indigo-900"
                     target="_blank"
-                    href="{{ URL::to('/'.$item->slug)}}"
+                    href="{{ URL::to('/pages/'.$item->slug)}}"
                 >
                     {{ $item->slug }}
                 </a>

@@ -5,6 +5,7 @@ namespace App\View\Components;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class NavMenu extends Component
 {
@@ -26,28 +27,38 @@ class NavMenu extends Component
     public function getSideBarLinks(){
         $links = [];
 
-        if(Auth::check()){
+        // if user is admin, add the admin link
+        if(Auth::check()) {
             $links[] = [
                 'label' => __('Profile'),
                 'url' => route('profile.show'),
             ];
-            if(Auth::user()->hasRole('admin')){
+            if(Auth::user()->hasRole(['admin', 'super-admin'])){
                 $links[] = [
-                    'label' => 'Admin',
+                    'label' => __('Admin'),
                     'url' => url('admin'),
                 ];
+
+                // if user is on a page, add the edit link
+                if(Route::currentRouteName() == 'page.show'){
+                    $links[] = [
+                        'label' => __('Edit Page'),
+                        'url' => url('/pages/' . Route::current()->parameter('urlslug') . '/edit'),
+                    ];
+                }
             }
         }
-
+        
         return $links;
     }
 
     public function getTopNavLinks(){
-        $links = [
-        [
+        $links = [[
             'label' => __('Pages'),
             'url' => url('pages'),
-        ]];
+        ]]; //start with the pages link
+
+
         //check if user is already logged in
         if (Auth::check()) {
             //if user is logged in, show logout link
@@ -55,7 +66,6 @@ class NavMenu extends Component
                 'label' => __('Logout'),
                 'url' => route('logout'),
             ];
-
         } else {
             //if user is not logged in, show login link
             $links[] = [

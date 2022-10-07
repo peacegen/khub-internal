@@ -97,19 +97,23 @@
                 <x-carousel-card
                 content="{{ $item->title }}"
                 backgroundUrl="{{ $item->thumbnail_url ?: config('config.default-thumbnail') }}"
-                link="{{ URL::to('/pages/'.$item->slug)}}">
+                link="{{ URL::to('/pages/'.$item->slug)}}"
+                display="block"
+                >
+
                 </x-carousel-card>
             </div>
         @endforeach
-    </div>
-
+        </div>
+    @push('scripts')
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    @endpush
 
     <script type="text/javascript">
         const flkty = new Flickity( '.carousel',{
-            @foreach ($options as $key => $value)
-                {{ $key }}: {{ $value }},
-            @endforeach
+        @foreach ($options as $key => $value)
+            {{ $key }}: {{ $value }},
+        @endforeach
         });
         flkty.on( 'change', function( index ) {
             livewire.emit('listener', index)

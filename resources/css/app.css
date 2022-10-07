@@ -1,4 +1,5 @@
 @import './_trix.css';
+@import './select2.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,3 +16,8 @@
 .error {
     color: red;
 }
+
+/* .select2-selection-styling {
+    @apply border-2 border-gray-300 rounded;
+} */
+

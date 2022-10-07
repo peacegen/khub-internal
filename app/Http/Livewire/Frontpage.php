@@ -10,6 +10,7 @@ class Frontpage extends Component
     public $title;
     public $content;
     public $urlslug;
+    public $page;
 
     public function mount($urlslug=null)
     {
@@ -24,15 +25,13 @@ class Frontpage extends Component
             if (empty($urlslug)) {
                 return redirect()->route('/');
             } else {
-                $page = Page::where('slug', $urlslug)->first();
-                if (!$page) {
+                $this->page = Page::where('slug', $urlslug)->first();
+                if (!$this->page) {
                     return abort(404);
                 }
             }
 
-            $this->title = $page->title;
-            $this->content = $page->content;
-            $this->attachments = array_map(fn($value) => $value->attachable, $page->content->attachments()->toArray());
+            $this->attachments = array_map(fn($value) => $value->attachable, $this->page->content->attachments()->toArray());
         }
 
 
