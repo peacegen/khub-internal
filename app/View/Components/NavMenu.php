@@ -48,7 +48,7 @@ class NavMenu extends Component
                 }
             }
         }
-        
+
         return $links;
     }
 
@@ -64,7 +64,7 @@ class NavMenu extends Component
             //if user is logged in, show logout link
             $links[] = [
                 'label' => __('Logout'),
-                'url' => route('logout'),
+                'url' => 'logout',
             ];
         } else {
             //if user is not logged in, show login link
