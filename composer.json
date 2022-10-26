@@ -13,7 +13,6 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
-        "laraveldaily/laravel-permission-ui": "^0.1.4",
         "livewire/livewire": "^2.5",
         "mcamara/laravel-localization": "^1.7",
         "mews/purifier": "^3.3",
