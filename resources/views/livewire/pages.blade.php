@@ -90,12 +90,6 @@
             </div>
             <div>
                 <div wire:ignore>
-                    {{-- @include('components.select2-dropdown', [
-                        'name' => 'tags',
-                        'options' => {{ $tag_list }},
-                        'selected' => {{ $tags }},
-                        'placeholder' => 'Select Parent Page',
-                    ]) --}}
                     <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="tags">
                         @foreach ($tag_list as $tag)
                             <option value="{{ $tag }}">{{ $tag }}</option>
@@ -103,15 +97,6 @@
                     </select>
                 </div>
             </div>
-            {{-- //TODO Fix thumbnail upload --}}
-            {{-- <div>
-                <input type="file" wire:model="img">
-                @error('photo') <span class="error">{{ $message }}</span> @enderror
-            </div> --}}
-            {{-- @include('components.select2-dropdown', ['name' => 'tags',
-            'options' => array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tag_list)]) --}}
-            {{-- {{ array_map(function($item) { return ["value" => $item, "text" => $item]; }, $tags->toArray()) }} --}}
-             {{-- ['name' => 'state', 'label' => 'State', 'data' => $states]) --}}
         </x-slot>
 
         <x-slot name="footer">
@@ -153,31 +138,6 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-dialog-modal>
-
-    {{-- <script>
-        function uploadTrixAttachment(attachment) {
-            //upload with livewire
-            @this.upload('newFiles',
-            attachment.file,
-            function (uploadedUrl) {
-                const eventName = "trix-upload-completed:${btoa(uploadedUrl)}";
-                const listener = function (event) {
-                    attachment.setAttributes(event.detail);
-                    window.removeEventListener(eventName, listener);
-                }
-
-                window.addEventListener(eventName, listener);
-
-                @this.call('completeUpload', uploadedUrl, eventName);
-            },
-            function () {},
-            function (event) {
-                attachment.setUploadProgress(event.detail.progress);
-            }
-
-            );
-        }
-        </script> --}}
 </div>
 
 
