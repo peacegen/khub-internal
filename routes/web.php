@@ -54,6 +54,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.users');
             })->name('edit-users')->middleware(['permission:edit users']);
 
+            Route::get('/admin/users/{id}', function () {
+                return view('livewire.user.edit-user');
+            })->name('edit-users')->middleware(['permission:edit users']);
+
             Route::get('/admin/permissions', function () {
                 return view('admin.permissions');
             })->name('edit-permissions');
