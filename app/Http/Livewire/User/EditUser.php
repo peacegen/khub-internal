@@ -44,7 +44,6 @@ class EditUser extends Component
         $this->user->syncRoles($this->role);
         session()->flash('flash.banner', 'User saved successfully');
         session()->flash('flash.bannerStyle', 'success');
-        redirect()->to('/pages/'.$this->page->slug);
     }
 
     public function modelData(){

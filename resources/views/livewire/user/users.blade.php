@@ -1,6 +1,6 @@
 <div class="p-6">
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
-        <x-jet-button wire:click="createShowModal">
+        <x-jet-button wire:click="create">
             {{ __('Create') }}
         </x-jet-button>
     </div>
@@ -28,7 +28,7 @@
                                         <td class="px-4 py-2">{{ $item->getRoleNames()[0] ?? '' }}</td>
                                         <td class="px-4 py-2">{{ $item->team }}</td>
                                         <td class="px-4 py-2 flex justify-end">
-                                            <x-jet-button wire:click="updateShowModal({{ $item->id }})">
+                                            <x-jet-button wire:click="update({{ $item->id }})">
                                                 {{ __('Update') }}
                                             </x-jet-button>
                                             <x-jet-danger-button class="ml-2" wire:click="deleteShowModal({{ $item->id }})">
