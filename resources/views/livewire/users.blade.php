@@ -13,21 +13,21 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Team</th>
+                                <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Team</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @if ($data->count())
                                 @foreach ($data as $item)
                                     <tr>
-                                        <td class="px-6 py-2">{{ $item->name }}</td>
-                                        <td class="px-6 py-2">{{ $item->email }}</td>
-                                        <td class="px-6 py-2">{{ $item->role }}</td>
-                                        <td class="px-6 py-2">{{ $item->team }}</td>
-                                        <td class="px-6 py-2 flex justify-end">
+                                        <td class="px-4 py-2">{{ $item->name }}</td>
+                                        <td class="px-4 py-2">{{ $item->email }}</td>
+                                        <td class="px-4 py-2">{{ $item->getRoleNames()[0] ?? '' }}</td>
+                                        <td class="px-4 py-2">{{ $item->team }}</td>
+                                        <td class="px-4 py-2 flex justify-end">
                                             <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                                 {{ __('Update') }}
                                             </x-jet-button>
@@ -67,9 +67,10 @@
             </div>
             <div class="mt-4">
                 <x-jet-label for="" value="{{ __('Type') }}" />
-                <select wire:model="" id="" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    <option value="">Options1</option>
-                    <option value="">Option2</option>
+                <select wire:model="role" id="" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    @foreach (\Spatie\Permission\Models\Role::all() as $role)
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @endforeach
                 </select>
                 @error('') <span class="error">{{ $message }}</span> @enderror
             </div>
