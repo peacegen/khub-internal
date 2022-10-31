@@ -15,4 +15,10 @@ return [
 
     // If you want to use OAuth, set this to true. Default: true
     'enable-oauth' => true,
+
+    //
+    'restrict-by-email' => true,
+
+    // Email domain
+    'email-domain' => 'peacegen.id',
 ];

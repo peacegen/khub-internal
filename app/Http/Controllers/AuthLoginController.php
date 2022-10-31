@@ -20,13 +20,16 @@ class AuthLoginController extends Controller
             if ($user) {
                 Auth::login($user);
             } else {
-                $user = User::create([
-                    'name' => $data->name,
-                    'email' => $data->email,
-                    'password' => Hash::make(Str::random(24)),
-                ]);
-
-                Auth::login($user);
+                if (!config('config.restrict_by_email') or Str::endsWith($data->email, '@' . config('config.email-domain'))) {
+                    $user = User::create([
+                        'name' => $data->name,
+                        'email' => $data->email,
+                        'password' => Hash::make(Str::random(24)),
+                    ]);
+                    Auth::login($user);
+                } else {
+                    return redirect('/')->with('error', 'You are not allowed to login');
+                }
             }
             return redirect('/');
         } catch (Exception $e) {
