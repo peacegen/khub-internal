@@ -87,7 +87,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         ];
     })->middleware(['auth'])->name('attachments.store');
 
-    Route::get('/', Homepage::class);
+    Route::prefix('auth')->group(function () {
+        
+    });
+
+    Route::get('/', Homepage::class)->name('home');
 
 });
 
