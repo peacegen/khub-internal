@@ -12,4 +12,7 @@ return [
 
     // Default thumbnail url
     'default-thumbnail' => env('APP_URL').'/assets/img/default-background.jpg',
+
+    // If you want to use OAuth, set this to true. Default: true
+    'enable-oauth' => true,
 ];

@@ -70,11 +70,11 @@ class NavMenu extends Component
             //if user is not logged in, show login link
             $links[] = [
                 'label' => __('Login'),
-                'url' => url('login'),
+                'url' => route('login'),
             ];
             $links[] = [
                 'label' => __('Register'),
-                'url' => url('register'),
+                'url' => route('register'),
             ];
         }
         return $links;

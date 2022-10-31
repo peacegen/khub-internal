@@ -7,6 +7,8 @@ use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\Homepage;
 use App\Http\Livewire\PageList;
 use App\Http\Livewire\TagList;
+use App\Http\Controllers\AuthLoginController;
+use App\View\Components\AuthSelection;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,8 +89,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         ];
     })->middleware(['auth'])->name('attachments.store');
 
-    Route::get('/', Homepage::class);
+    Route::prefix('auth')->group(function () {
+        // Route::get('/', AuthSelection::class)->name('auth');
+        Route::get('/', function () {
+            return view('components.auth-selection');
+        })->name('auth');
+        Route::get('google', [AuthLoginController::class, 'redirectToGoogle'])->name('auth.google');
+        Route::get('google/callback', [AuthLoginController::class, 'handleGoogleCallback']);
+    });
+
+    Route::get('/', Homepage::class)->name('home');
 
 });
-
-
