@@ -16,7 +16,7 @@ return [
     // If you want to use OAuth, set this to true. Default: true
     'enable-oauth' => true,
 
-    //
+    // Restrict te certain email domians
     'restrict-by-email' => true,
 
     // Email domain
