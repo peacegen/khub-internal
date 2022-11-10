@@ -10,6 +10,11 @@ class Roles extends Component
     public $modalConfirmDeleteVisible;
     public $modelId;
 
+    public function create()
+    {
+        return redirect()->route('edit-role-id', ['id' => 'new']);
+    }
+
     public function update($modelId)
     {
         return redirect()->route('edit-role-id', ['id' => $modelId]);

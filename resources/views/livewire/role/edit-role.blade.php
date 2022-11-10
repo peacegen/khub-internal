@@ -12,15 +12,21 @@
                 <div wire:ignore >
                     <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="permissions">
                         @foreach($permissions_list as $permission)
-                            <option value="{{ $permission->id }}">{{ Str::title($permission->name) }}</option>
+                            <option value="{{ $permission->name }}">{{ Str::title($permission->name) }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             @endisset
+            @if ($isNew)
+            <x-jet-button class="" wire:click="create" wire:loading.attr="disabled">
+                {{ __('Create') }}
+            </x-jet-button>
+            @else
             <x-jet-button class="" wire:click="update" wire:loading.attr="disabled">
                 {{ __('Update') }}
             </x-jet-button>
+            @endif
         </section>
     </div>
 </div>
