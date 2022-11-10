@@ -23,6 +23,6 @@ class AuthSelection extends Component
      */
     public function render()
     {
-        return view('components.auth-selection');
+        return view('components.auth-selection')->layout('layouts.frontpage');
     }
 }

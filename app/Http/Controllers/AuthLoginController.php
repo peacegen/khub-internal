@@ -51,4 +51,9 @@ class AuthLoginController extends Controller
 
         return $this->_registerOrLoginUser($user);
     }
+
+    public function render()
+    {
+        return view('components.auth-selection')->layout('layouts.frontpage');
+    }
 }

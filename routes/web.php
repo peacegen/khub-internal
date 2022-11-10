@@ -94,6 +94,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('/', function () {
             return view('components.auth-selection');
         })->name('auth');
+
         Route::get('google', [AuthLoginController::class, 'redirectToGoogle'])->name('auth.google');
         Route::get('google/callback', [AuthLoginController::class, 'handleGoogleCallback']);
     });
