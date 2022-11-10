@@ -37,14 +37,6 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        {{-- @hasrole('admin|super-admin')
-        <x-admin-menu/>
-
-        @else
-
-        <x-nav-menu/>
-        @endhasrole --}}
-
         <x-nav-menu/>
 
         <div class="bg-gray-100">

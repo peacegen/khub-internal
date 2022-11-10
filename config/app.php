@@ -216,6 +216,7 @@ return [
         'Helper' => App\Helpers\Helper::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Str' => Illuminate\Support\Str::class
     ])->toArray(),
 
 ];

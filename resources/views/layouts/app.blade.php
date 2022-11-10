@@ -5,25 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'K-Hub') }}</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Script stack -->
         @stack('scripts')
+        <!-- Select script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-        <!-- Scripts -->
+        <script src="{{ asset("assets/js/pharaonic.select2.js") }}"></script>
+
+        <!-- Carousel Style -->
         @yield('carousel-styles')
-        @yield('select2-scripts')
 
         <!-- Styles -->
 
         <x-rich-text-trix-styles />
         @livewireStyles
-        @stack('styles')
 
+        <!-- Stacked Styles -->
+        {{-- @stack('styles') --}}
 
 
     </head>
@@ -32,7 +39,7 @@
 
         <x-nav-menu/>
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="bg-gray-100">
             <!-- Page Content -->
             <main>
                 {{ $slot }}
@@ -41,6 +48,7 @@
 
         @stack('modals')
 
-        @livewireScripts
     </body>
+    @livewireScripts
+    @yield('scripts')
 </html>

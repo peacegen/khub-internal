@@ -8,12 +8,11 @@
             </div>
             @isset($permissions_list)
             <div class="mb-4">
-                <x-jet-label for="roles" value="{{ __('Role') }}" />
+                <x-jet-label for="permissions" value="{{ __('Permissions') }}" />
                 <div wire:ignore >
-                    <select data-pharaonic="select2" data-width="element" data-component-id="{{ $this->id }}" wire:model="role">
-                        <option value="">{{ __('Select a role...') }}</option>
-                        @foreach($permission_list as $permission)
-                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                    <select data-pharaonic="select2" multiple data-component-id="{{ $this->id }}" wire:model="permissions">
+                        @foreach($permissions_list as $permission)
+                            <option value="{{ $permission->id }}">{{ Str::title($permission->name) }}</option>
                         @endforeach
                     </select>
                 </div>
