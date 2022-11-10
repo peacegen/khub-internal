@@ -1,5 +1,10 @@
 <div class="p-6">
-    <div class="flex items-center justify-end">
+    <div class="flex items-center justify-between mb-4">
+        <a href="{{ route('admin') }}" class="text-blue-500 hover:text-blue-700 inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-black" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+        </a>
         <x-jet-button wire:click="createShowModal">
             {{ __('Create') }}
         </x-jet-button>
@@ -35,7 +40,7 @@
                 </a>
             </td>
             <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content->toPlainText(), 50, '...') !!}</td>
-            <td class="px-6 py-4 text-right text-sm">
+            <td class="px-6 py-4 text-right flex justify-center gap-2">
                 <x-jet-button wire:click="editPage({{ $item->id }})">
                     {{ __('Update') }}
                 </x-jet-button>
