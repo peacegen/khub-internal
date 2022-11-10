@@ -8,6 +8,7 @@ use App\Http\Livewire\Homepage;
 use App\Http\Livewire\PageList;
 use App\Http\Livewire\TagList;
 use App\Http\Livewire\AuthMenu;
+use App\Http\Livewire\User\EditUser;
 use App\Http\Controllers\AuthLoginController;
 
 /*
@@ -56,9 +57,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.users');
             })->name('edit-users')->middleware(['permission:edit users']);
 
-            Route::get('/admin/users/{id}', function () {
-                return view('livewire.user.edit-user');
-            })->name('edit-users')->middleware(['permission:edit users']);
+            Route::get('/admin/users/{id}', EditUser::class)->name('edit-user-id')->middleware(['permission:edit users']);
 
             Route::get('/admin/permissions', function () {
                 return view('admin.permissions');

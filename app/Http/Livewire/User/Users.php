@@ -11,7 +11,9 @@ class Users extends Component
     public $modelId;
 
     public function update($modelId)
-    {}
+    {
+        return redirect()->route('edit-user-id', ['id' => $modelId]);
+    }
 
     public function delete()
     {
