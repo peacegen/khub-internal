@@ -91,7 +91,7 @@
     @endsection
 
 
-    <div class="carousel js-flickity " wire:ignore>
+    <div class="carousel js-flickity" wire:ignore>
         @foreach($items as $item)
             <div class="carousel-cell">
                 <x-carousel-card

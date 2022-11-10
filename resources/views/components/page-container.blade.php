@@ -5,9 +5,9 @@
     </a>
     <div class="w-2/3">
         <a href="{{ URL::to('/pages/'.$page->slug) }}" class="relative">
-        <div class="text-lg px-2">
-        {{ $page->title }}
-        </div>
+            <div class="text-lg px-2">
+                {{ $page->title }}
+            </div>
         </a>
         @if(count($page->tags))
             <div class="px-2 py-2 flex-row">
