@@ -29,7 +29,7 @@
                                     <tr>
                                         <td class="px-6 py-2">{{ $item->name }}</td>
                                         <td class="px-6 py-2">{{ $item->description }}</td>
-                                        <td class="px-6 py-2 flex justify-end">
+                                        <td class="px-6 py-2 flex gap-2">
                                             <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                                 {{ __('Update') }}
                                             </x-jet-button>

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Role;
 
-use App\Models\Role;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
@@ -12,14 +12,13 @@ class Roles extends Component
 
     public function update($modelId)
     {
-        return redirect()->route('edit-user-id', ['id' => $modelId]);
+        return redirect()->route('edit-role-id', ['id' => $modelId]);
     }
 
     public function delete()
     {
         Role::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
-        // $this->resetPage();
     }
 
     public function deleteShowModal($modelId)
@@ -30,9 +29,8 @@ class Roles extends Component
 
     public function render()
     {
-        // return view('admin.users');
-        return view('livewire.user.users', [
-            'data' => \App\Models\User::paginate(20),
+        return view('livewire.role.roles', [
+            'data' => Role::paginate(20),
         ]);
     }
 }

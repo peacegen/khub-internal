@@ -10,6 +10,7 @@ use App\Http\Livewire\TagList;
 use App\Http\Livewire\AuthMenu;
 use App\Http\Livewire\User\EditUser;
 use App\Http\Controllers\AuthLoginController;
+use App\Http\Livewire\Role\EditRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             Route::get('/admin/roles', function () {
                 return view('admin.roles');
             })->name('edit-roles');
+
+            Route::get('/admin/roles/{id}', EditRole::class)->name('edit-role-id');
 
             Route::get('/admin/tags', function () {
                 return view('admin.tags');
