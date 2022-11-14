@@ -18,9 +18,23 @@
             {{-- Top Navigation --}}
             <ul class="hidden sm:flex sm:text-left text-gray-100 hover:text-gray-50 text-xs">
                 @foreach ($topNavLinks as $item)
-                    <a href="{{ $item['url'] }}">
-                        <li class="cursor-pointer px-4 py-2 hover:bg-primary-600">{{ __(__($item['label'])) }}</li>
-                    </a>
+                    {{ Debugbar::info($item) }}
+                    @if($item['url'] == 'logout')
+                        <li class="cursor-pointer px-4 py-2 hover:bg-primary-600">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </form>
+                        </li>
+                    @else
+                        <a href="{{ url($item['url']) }}">
+                            <li class="cursor-pointer px-4 py-2 hover:bg-primary-600">{{ __(__($item['label'])) }}</li>
+                        </a>
+                    @endif
                 @endforeach
             </ul>
         </div>

@@ -17,6 +17,7 @@ yarn-error.log
 stubs/*.stub
 public/vendor/*
 package-lock.json
+composer.lock
 
 # Logs
 logs

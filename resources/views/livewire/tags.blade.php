@@ -1,5 +1,10 @@
 <div class="p-6">
-    <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
+    <div class="flex items-center justify-between mb-4">
+        <a href="{{ route('admin') }}" class="text-blue-500 hover:text-blue-700 inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 fill-black" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+        </a>
         <x-jet-button wire:click="createShowModal">
             {{ __('Create') }}
         </x-jet-button>
@@ -13,8 +18,9 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                             <tr>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Name') }}</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Description') }}</th>
+                                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Action") }}</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -23,7 +29,7 @@
                                     <tr>
                                         <td class="px-6 py-2">{{ $item->name }}</td>
                                         <td class="px-6 py-2">{{ $item->description }}</td>
-                                        <td class="px-6 py-2 flex justify-end">
+                                        <td class="px-6 py-2 flex gap-2">
                                             <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                                 {{ __('Update') }}
                                             </x-jet-button>

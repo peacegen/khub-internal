@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'K-Hub'),
 
     /*
     |--------------------------------------------------------------------------
@@ -197,6 +197,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -214,6 +215,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Helper' => App\Helpers\Helper::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Str' => Illuminate\Support\Str::class
     ])->toArray(),
 
 ];

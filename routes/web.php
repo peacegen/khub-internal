@@ -7,6 +7,10 @@ use App\Http\Livewire\Frontpage;
 use App\Http\Livewire\Homepage;
 use App\Http\Livewire\PageList;
 use App\Http\Livewire\TagList;
+use App\Http\Livewire\AuthMenu;
+use App\Http\Livewire\User\EditUser;
+use App\Http\Controllers\AuthLoginController;
+use App\Http\Livewire\Role\EditRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,13 +58,17 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.users');
             })->name('edit-users')->middleware(['permission:edit users']);
 
+            Route::get('/admin/users/{id}', EditUser::class)->name('edit-user-id')->middleware(['permission:edit users']);
+
             Route::get('/admin/permissions', function () {
                 return view('admin.permissions');
-            })->name('edit-permissions');
+            })->name('edit-permissions')->middleware(['permission:edit roles']);
 
             Route::get('/admin/roles', function () {
                 return view('admin.roles');
-            })->name('edit-roles');
+            })->name('edit-roles')->middleware(['permission:edit roles']);
+
+            Route::get('/admin/roles/{id}', EditRole::class)->name('edit-role-id')->middleware(['permission:edit roles']);
 
             Route::get('/admin/tags', function () {
                 return view('admin.tags');
@@ -83,8 +91,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         ];
     })->middleware(['auth'])->name('attachments.store');
 
-    Route::get('/', Homepage::class);
+    Route::prefix('auth')->group(function () {
+        // Route::get('/', AuthSelection::class)->name('auth');
+        Route::get('/', AuthMenu::class)->name('auth');
+
+        Route::get('google', [AuthLoginController::class, 'redirectToGoogle'])->name('auth.google');
+        Route::get('google/callback', [AuthLoginController::class, 'handleGoogleCallback']);
+    });
+
+    Route::get('/', Homepage::class)->name('home');
 
 });
-
-
