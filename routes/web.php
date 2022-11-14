@@ -62,13 +62,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 
             Route::get('/admin/permissions', function () {
                 return view('admin.permissions');
-            })->name('edit-permissions');
+            })->name('edit-permissions')->middleware(['permission:edit roles']);
 
             Route::get('/admin/roles', function () {
                 return view('admin.roles');
-            })->name('edit-roles');
+            })->name('edit-roles')->middleware(['permission:edit roles']);
 
-            Route::get('/admin/roles/{id}', EditRole::class)->name('edit-role-id');
+            Route::get('/admin/roles/{id}', EditRole::class)->name('edit-role-id')->middleware(['permission:edit roles']);
 
             Route::get('/admin/tags', function () {
                 return view('admin.tags');
