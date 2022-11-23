@@ -61,7 +61,7 @@ class EditUser extends Component
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'team' => $this->team,
+            'team' => 'user',
         ];
     }
 

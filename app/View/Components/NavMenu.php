@@ -33,7 +33,8 @@ class NavMenu extends Component
                 'label' => __('Profile'),
                 'url' => route('profile.show'),
             ];
-            if(Auth::user()->hasRole(['admin', 'super-admin'])){
+            $user = Auth::user();
+            if($user->hasRole(['admin', 'super-admin'])){
                 $links[] = [
                     'label' => __('Admin'),
                     'url' => url('admin'),
@@ -46,6 +47,36 @@ class NavMenu extends Component
                         'url' => url('/pages/' . Route::current()->parameter('urlslug') . '/edit'),
                     ];
                 }
+            }
+
+
+            if($user->can('view pages')){
+                $links[] = [
+                    'label' => __('Pages'),
+                    'url' => route('edit-pages'),
+                ];
+            }
+            
+            if($user->can('view users')){
+                $links[] = [
+                    'label' => __('Users'),
+                    'url' => route('edit-users'),
+                ];
+            }
+
+            if($user->can('view roles')){
+                $links[] = [
+                    'label' => __('Roles'),
+                    'url' => route('edit-roles'),
+                ];
+            }
+
+
+            if($user->can('view tags')){
+                $links[] = [
+                    'label' => __('Tags'),
+                    'url' => route('edit-tags'),
+                ];
             }
         }
 
