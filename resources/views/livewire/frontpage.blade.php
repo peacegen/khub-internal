@@ -1,4 +1,4 @@
-<div class="mx-auto bg-gray-100 p-12 min-h-screen sm:w-8/12 md:w-9/12 lg:w-10/12">
+<div class="mx-auto bg-gray-100 p-12 sm:w-8/12 md:w-9/12 lg:w-10/12">
     <section class="divide-y text-gray-900">
         <div>
         <h1 class="text-3xl font-bold">{{ $page->title }}</h1>

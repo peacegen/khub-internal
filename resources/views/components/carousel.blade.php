@@ -12,6 +12,7 @@
         }
         .carousel {
             background: transparent;
+            margin-bottom: 32px;
         }
         .carousel-cell {
             width: 50%;
