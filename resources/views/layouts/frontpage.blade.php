@@ -37,16 +37,20 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <x-nav-menu/>
+        <div class="flex flex-col min-h-screen bg-gray-100">
+            <x-nav-menu/>
 
-        <div class="bg-gray-100">
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div>
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
+            </div>
+            <x-footer/>
         </div>
 
         @stack('modals')
+
 
     </body>
     @livewireScripts
