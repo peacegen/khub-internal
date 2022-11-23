@@ -25,13 +25,12 @@ use App\Http\Livewire\Role\EditRole;
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
-    Route::middleware(['accessteam'])->group(function ()
+    Route::middleware(['auth'])->group(function ()
     {
         Route::middleware([
             'auth:sanctum',
             config('jetstream.auth_session'),
             'verified',
-            'role:super-admin'
         ])->group(function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
@@ -73,10 +72,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
             Route::get('/admin/tags', function () {
                 return view('admin.tags');
             })->name('edit-tags')->middleware(['permission:edit tags']);
+            Route::get('/pages', PageList::class)->name('page-list');
+            Route::get('/pages/{urlslug}', Frontpage::class)->name('page.show');
+            Route::get('/tags/{tag}', TagList::class)->name('tags');
         });
-        Route::get('/pages', PageList::class)->name('page-list');
-        Route::get('/pages/{urlslug}', Frontpage::class)->name('page.show');
-        Route::get('/tags/{tag}', TagList::class)->name('tags');
     });
 
     Route::post('attachments', function () {
@@ -99,6 +98,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::get('google/callback', [AuthLoginController::class, 'handleGoogleCallback']);
     });
 
-    Route::get('/', Homepage::class)->name('home');
+    Route::get('/', Homepage::class)->name('home')->middleware('auth');
 
 });

@@ -30,7 +30,7 @@
             {{-- @endisset --}}
             </div>
             @endisset
-            @isset($team_list)
+            {{-- @isset($team_list)
             <div class="mb-4">
                 <x-jet-label for="teams" value="{{ __('Teams') }}" />
                 <div wire:ignore >
@@ -41,9 +41,8 @@
                         @endforeach
                     </select>
                 </div>
-            {{-- @endisset --}}
             </div>
-            @endisset
+            @endisset --}}
             <x-jet-button class="" wire:click="update" wire:loading.attr="disabled">
                 {{ __('Update') }}
             </x-jet-button>

@@ -4,7 +4,9 @@
             <a href="{{ route('login') }}">{{ __("Login") }}</a>
         </li>
         <li>
-            <a href="{{ route('auth.google') }}">{{ __("Login with google") }}</a>
+            <a href="{{ route('auth.google') }}" class="w-3/4">
+                <x-google-sign-in />
+            </a>
         </li>
     </ul>
 </div>
