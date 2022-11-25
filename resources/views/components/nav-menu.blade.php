@@ -62,6 +62,9 @@
             {{-- Top Navigation Mobile Web View --}}
             <ul class="text-gray-200 text-md">
                 @foreach ($topNavLinks as $item)
+                    @auth
+                        <li wire:click="$toggle('loginModalVisible')" class="cursor-pointer px-4 py-2 hover:bg-primary-600">{{ __($item['label']) }}</li>
+                    @endauth
                     <a href="{{ $item['url'] }}">
                         <li class="cursor-pointer px-4 py-2 hover:bg-primary-600">{{ __($item['label']) }}</li>
                     </a>
@@ -70,5 +73,22 @@
             </div>
         </aside>
     </div>
+    <x-jet-modal wire:model="loginModalVisible">
+        <x-slot name="title">
+            {{ __('Login') }}
+        </x-slot>
+
+        <x-slot name="content">
+            <a href="{{ route('auth.google') }}">
+                <x-google-sign-in />
+            </a>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('loginModalVisible')" wire:loading.attr="disabled">
+                {{ __('Cancel') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-modal>
 </div>
 
