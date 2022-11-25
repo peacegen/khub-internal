@@ -88,11 +88,10 @@
         <!-- Start Modal -->
         <x-jet-dialog-modal wire:model="loginModalVisible">
             <x-slot name="title">
-                {{ __('Login') }}
+                {{ __('Login').'/'.__('Register') }}
             </x-slot>
 
             <x-slot name="content">
-                <!-- Content -->
                 <a href="{{ route('auth.google') }}">
                     <x-google-sign-in />
                 </a>
