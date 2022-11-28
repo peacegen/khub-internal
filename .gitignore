@@ -125,4 +125,3 @@ dist
 .tern-port
 config/debugbar.php
 
-composer.lock
