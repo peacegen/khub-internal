@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class DownloadContainer extends Component
 {
+    public $file;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($media)
+    public function __construct($file)
     {
-        $this->media = $media;
+        $this->file = $file;
     }
 
     /**

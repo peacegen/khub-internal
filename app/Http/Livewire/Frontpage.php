@@ -32,9 +32,12 @@ class Frontpage extends Component
                     return abort(404);
                 }
             }
-            foreach($this->page->getMedia('files') as $file){
-                $this->attachments[] = ['url' => $file->getFullUrl(), 'filename' => $file->name];
+
+            $media = $this->page->getMedia('files');
+            foreach ($media as $attachment) {
+                $this->attachments[] = $attachment;
             }
+
             // $this->attachments = array_map(fn($media) => ['url' => $media->getFullUrl(), 'filename' => $media->name], $this->page->getMedia());
 
             // $this->attachments = array_map(fn($value) => $value->attachable, $this->page->content->attachments()->toArray());
