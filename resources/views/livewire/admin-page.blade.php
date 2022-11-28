@@ -11,5 +11,6 @@
     </a>
     <a href={{ route('edit-tags') }}>
         <li class="cursor-pointer px-4 py-2 hover:bg-primary-200">{{ __('Tags') }}</li>
+    </a>
     </ul>
 </div>
