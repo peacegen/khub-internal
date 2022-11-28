@@ -39,7 +39,7 @@ class Frontpage extends Component
 
     public function render()
     {
-        return view('livewire.frontpage')->layout('layouts.frontpage');
+        return view('livewire.frontpage');
     }
 }
 

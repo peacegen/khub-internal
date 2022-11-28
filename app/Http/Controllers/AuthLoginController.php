@@ -54,6 +54,6 @@ class AuthLoginController extends Controller
 
     public function render()
     {
-        return view('components.auth-selection')->layout('layouts.frontpage');
+        return view('components.auth-selection');
     }
 }

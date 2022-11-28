@@ -34,6 +34,6 @@ class TagList extends Component
             })->get();
         }
 
-        return view('livewire.tag-list')->layout('layouts.frontpage');
+        return view('livewire.tag-list');
     }
 }

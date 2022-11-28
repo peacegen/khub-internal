@@ -78,25 +78,6 @@ class NavMenu extends Component
             'url' => url('pages'),
         ]]; //start with the pages link
 
-
-        //check if user is already logged in
-        if (Auth::check()) {
-            //if user is logged in, show logout link
-            $links[] = [
-                'label' => __('Logout'),
-                'url' => 'logout',
-            ];
-        } else {
-            //if user is not logged in, show login link
-            // $links[] = [
-            //     'label' => __('Login/Register'),
-            //     'url' => route('auth'),
-            // ];
-            // $links[] = [
-            //     'label' => __('Register'),
-            //     'url' => route('register'),
-            // ];
-        }
         return $links;
         }
 

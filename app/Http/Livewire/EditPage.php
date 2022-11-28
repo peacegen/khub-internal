@@ -98,6 +98,6 @@ class EditPage extends Component
 
     public function render()
     {
-        return view('livewire.edit-page')->layout('layouts.frontpage');
+        return view('livewire.edit-page');
     }
 }

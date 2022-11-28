@@ -254,6 +254,6 @@ class Pages extends Component
         return view('livewire.pages')->with([
             'data' => $this->read(),
             'tag_list' => $this->readAllTagNamesAsArray(),
-        ])->layout('layouts.frontpage');
+        ]);
     }
 }
