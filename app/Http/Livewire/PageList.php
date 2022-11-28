@@ -33,6 +33,6 @@ class PageList extends Component
             $this->pageList = Page::where('title', 'like', '%' . $this->search . '%')->get();
         }
         // TODO add pagination
-        return view('livewire.page-list')->with('pages', $this->pageList)->layout('layouts.frontpage');
+        return view('livewire.page-list')->with('pages', $this->pageList);
     }
 }

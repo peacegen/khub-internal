@@ -1,5 +1,5 @@
 <div>
-    <div class="mx-auto bg-gray-100 p-12 min-h-screen sm:w-8/12 md:w-9/12 lg:w-10/12">
+    <div class="mx-auto bg-gray-100 p-12 sm:w-8/12 md:w-9/12 lg:w-10/12">
         <section class="text-gray-900">
             <div class="mb-4">
                 <x-jet-label for="title" value="{{ __('Page Title') }}" />
@@ -13,7 +13,11 @@
             </div>
             <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
                 <x-jet-label for="content" value="{{ __('Content') }}" />
+                @if(!$is_new)
                 <x-trix-field id="content" name="content" value="{!! $page->content->toTrixHtml() !!}"/>
+                @else
+                <x-trix-field id="content" name="content" value=""/>
+                @endif
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mb-4">
@@ -34,6 +38,29 @@
                 </select> --}}
             @endisset
             </div>
+            {{-- file upload --}}
+            <div class="mb-4">
+                <x-jet-label for="files" value="{{ __('File') }}" />
+                <input type="file" id="files" multiple wire:model="files" />
+                @error('files.*') <span class="error">{{ $message }}</span> @enderror
+                <div wire:loading wire:target="files" class="text-sm italic">{{ __('Uploading').'...' }}</div>
+            </div>
+            <div class="mb-4" wire.model="fileModels">
+                @if ($fileModels)
+                    <div class="flex overflow-auto">
+                        @foreach ($fileModels as $file)
+                            <div class="flex-col mx-2">
+                            <x-download-container :file='$file'/>
+                            <x-jet-danger-button wire:click="removeFile({{$loop->index}})" class="my-2">
+                                {{ __('Remove') }}
+                            </x-jet-danger-button>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+
             <div class="mb-3">
                 <x-jet-label for="thumbnail" value="{{ __('Thumbnail') }}" />
                 <input type="file" wire:model="thumbnail" class="">

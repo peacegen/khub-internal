@@ -67,6 +67,6 @@ class EditUser extends Component
 
     public function render()
     {
-        return view('livewire.user.edit-user')->layout('layouts.frontpage');
+        return view('livewire.user.edit-user');
     }
 }

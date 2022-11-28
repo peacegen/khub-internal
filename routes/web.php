@@ -47,9 +47,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('admin.pages');
             })->name('edit-pages')->middleware(['permission:edit pages']);
 
-            Route::get('/admin/pages/new', function () {
-                return view('livewire.edit-page', ['is_new' => true]);
-            })->name('edit-page')->middleware(['permission:edit pages']);
+            Route::get('/admin/pages/new', EditPage::class)->name('create-page')->middleware(['permission:edit pages']);
 
             Route::get('/pages/{urlslug}/edit', EditPage::class)->middleware(['permission:edit pages'])->name('edit-page-url');
 
