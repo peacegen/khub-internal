@@ -42,9 +42,24 @@
             <div class="mb-4">
                 <x-jet-label for="files" value="{{ __('File') }}" />
                 <input type="file" id="files" multiple wire:model="files" />
-                @error('files') <span class="error">{{ $message }}</span> @enderror
-                <div wire:loading wire:target="files" class="text-sm italic">Uploading...</div>
+                @error('files.*') <span class="error">{{ $message }}</span> @enderror
+                <div wire:loading wire:target="files" class="text-sm italic">{{ __('Uploading').'...' }}</div>
             </div>
+            <div class="mb-4" wire.model="fileModels">
+                @if ($fileModels)
+                    <div class="flex overflow-auto">
+                        @foreach ($fileModels as $file)
+                            <div class="flex-col mx-2">
+                            <x-download-container :file='$file'/>
+                            <x-jet-danger-button wire:click="removeFile({{$loop->index}})" class="my-2">
+                                {{ __('Remove') }}
+                            </x-jet-danger-button>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
 
             <div class="mb-3">
                 <x-jet-label for="thumbnail" value="{{ __('Thumbnail') }}" />

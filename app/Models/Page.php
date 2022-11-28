@@ -38,7 +38,11 @@ class Page extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->fit('crop', 1280, 720);
+            ->fit('crop', 1280, 720)
+            ->performOnCollections('thumbnail');
+
+        $this->addMediaConversion('thumb')
+            ->performOnCollections('files');
     }
 
 }

@@ -5,9 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Page;
 use App\Models\Tag;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 class EditPage extends Component
 {
@@ -24,8 +26,11 @@ class EditPage extends Component
     public $slug;
     public $tags = [];
     public $files;
+    public $fileModels;
     public $thumbnail;
     public $thumbnail_url;
+
+    protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function mount($urlslug = null)
     {
@@ -59,6 +64,7 @@ class EditPage extends Component
                 'slug' => 'required|unique:pages,slug',
                 'content' => 'required',
                 'thumbnail' => 'image|nullable',
+                'files.*' => 'file|nullable',
             ];
         } else {
             return [
@@ -66,6 +72,7 @@ class EditPage extends Component
                 'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->page->id)],
                 'content' => 'required',
                 'thumbnail' => 'image|nullable',
+                'files.*' => 'file|nullable',
             ];
         }
     }
@@ -78,6 +85,7 @@ class EditPage extends Component
         $this->slug = $model->slug;
         $this->content = $model->content;
         $this->tags = $model->tags->pluck('name')->toArray();
+        $this->fileModels = $model->getMedia('files');
         $this->thumbnail = $model->thumbnail;
         $this->thumbnail_url = $model->thumbnail_url;
     }
@@ -146,6 +154,16 @@ class EditPage extends Component
 
     public function cancel(){
         return redirect()->route('pages.index');
+    }
+
+    public function removeFile($id){
+        $file = $this->page->getMedia('files')[$id];
+        $file->delete();
+        $this->fileModels = $this->page->getMedia('files');
+        $this->emit('refreshComponent');
+        // $this->reset('files');
+        // $this->fileModels = $this->page->getMedia('files');
+
     }
 
     public function updatedTitle($value)

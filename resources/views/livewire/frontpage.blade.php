@@ -16,12 +16,14 @@
             </div>
         </article>
 
-        <div class="flex">
+        <div class="flex overflow-auto">
         @foreach ($attachments as $attachment)
+        <div class="mx-1">
         {{-- <a href="{{$attachment['url']}}" download="{{$attachment['filename']}}"> --}}
         {{-- <li class="items-center leading-sm px-3 py-1 bg-primary-100 outline outline-primary-500 outline-1 rounded-full"> Download {{$attachment['filename']}}</li> --}}
             <x-download-container :file="$attachment"/>
         {{-- </a> --}}
+        </div>
         @endforeach
         </div>
     </section>

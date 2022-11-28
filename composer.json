@@ -18,8 +18,10 @@
         "mcamara/laravel-localization": "^1.7",
         "mews/purifier": "^3.3",
         "pharaonic/livewire-select2": "^1.1",
+        "php-ffmpeg/php-ffmpeg": "^1.0",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-permission": "^5.5",
+        "spatie/pdf-to-image": "^1.2",
         "te7a-houdini/laravel-trix": "^2.0",
         "tonysm/rich-text-laravel": "^1.6"
     },
