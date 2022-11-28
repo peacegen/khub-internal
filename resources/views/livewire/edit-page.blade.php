@@ -38,6 +38,14 @@
                 </select> --}}
             @endisset
             </div>
+            {{-- file upload --}}
+            <div class="mb-4">
+                <x-jet-label for="files" value="{{ __('File') }}" />
+                <input type="file" id="files" multiple wire:model="files" />
+                @error('files') <span class="error">{{ $message }}</span> @enderror
+                <div wire:loading wire:target="files" class="text-sm italic">Uploading...</div>
+            </div>
+
             <div class="mb-3">
                 <x-jet-label for="thumbnail" value="{{ __('Thumbnail') }}" />
                 <input type="file" wire:model="thumbnail" class="">

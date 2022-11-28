@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Page;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class Frontpage extends Component
 {
@@ -11,6 +12,7 @@ class Frontpage extends Component
     public $content;
     public $urlslug;
     public $page;
+    public $attachments = [];
 
     public function mount($urlslug=null)
     {
@@ -30,8 +32,12 @@ class Frontpage extends Component
                     return abort(404);
                 }
             }
+            foreach($this->page->getMedia('files') as $file){
+                $this->attachments[] = ['url' => $file->getFullUrl(), 'filename' => $file->name];
+            }
+            // $this->attachments = array_map(fn($media) => ['url' => $media->getFullUrl(), 'filename' => $media->name], $this->page->getMedia());
 
-            $this->attachments = array_map(fn($value) => $value->attachable, $this->page->content->attachments()->toArray());
+            // $this->attachments = array_map(fn($value) => $value->attachable, $this->page->content->attachments()->toArray());
         }
 
 

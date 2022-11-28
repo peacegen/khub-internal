@@ -47,3 +47,7 @@
 .trix-content img {
     margin: 0 auto;
 }
+
+.trix-button-group.trix-button-group--file-tools {
+    display:none;
+}

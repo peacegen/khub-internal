@@ -23,6 +23,7 @@ class EditPage extends Component
     public $content;
     public $slug;
     public $tags = [];
+    public $files;
     public $thumbnail;
     public $thumbnail_url;
 
@@ -90,9 +91,15 @@ class EditPage extends Component
         $page->content = $this->content;
         $page->save();
         $page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
+        if ($this->files){
+            foreach ($this->files as $file) {
+                $page->addMedia($file->getRealPath())
+                    ->usingName($file->getClientOriginalName())
+                    ->toMediaCollection('files');
+            }
+        }
         if ($this->thumbnail) {
             $page->addMedia($this->thumbnail->getRealPath())
-                ->usingFileName(Str::random(32) . '.' . $this->thumbnail->getClientOriginalExtension())
                 ->toMediaCollection('thumbnail');
         }
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Page Created!']);
@@ -103,6 +110,13 @@ class EditPage extends Component
     {
         $this->validate();
         $this->page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
+        if ($this->files){
+            foreach ($this->files as $file) {
+                $this->page->addMedia($file->getRealPath())
+                    ->usingName($file->getClientOriginalName())
+                    ->toMediaCollection('files');
+            }
+        }
         if ($this->thumbnail){
             $this->page->addMedia($this->thumbnail->getRealPath())
             ->usingFileName(Str::random(32) . '.' . $this->thumbnail->getClientOriginalExtension())
