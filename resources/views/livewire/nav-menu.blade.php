@@ -58,7 +58,7 @@
             <div :class="show ? 'block' : 'hidden'" class="pb-3 block sm:hidden">
             <ul class="text-gray-200 text-md divide-y divide-gray-100">
                     <a href="/">
-                        <li class="cursor-pointer px-4 py-2 hover:bg-primary-600">Home</li>
+                        <li class="cursor-pointer px-4 py-2 hover:bg-primary-600">{{ __('Home') }}'</li>
                     </a>
                 @foreach ($sideBarLinks as $item)
                     <a href="{{ $item['url'] }}">
