@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Models\Tag;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 
 class EditPage extends Component
 {
@@ -25,12 +26,21 @@ class EditPage extends Component
     public $thumbnail;
     public $thumbnail_url;
 
-    public function mount($urlslug = null, $is_new = false)
+    public function mount($urlslug = null)
     {
         $this->urlslug = $urlslug;
-        $this->is_new = $is_new;
+        if ($this->urlslug == null) {
+            $this->is_new = true;
+        } else {
+            $this->is_new = false;
+        }
         if (!$this->is_new) {
             $this->loadModel($this->urlslug);
+        } else {
+            $this->title = "";
+            $this->content = "";
+            $this->slug = "";
+            $this->tags = [];
         }
         $this->tag_list = Tag::all()->pluck('name')->toArray();
     }
@@ -42,12 +52,21 @@ class EditPage extends Component
      */
     public function rules()
     {
-        return [
-            'title' => 'required',
-            'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->page->id)],
-            'content' => 'required',
-            'thumbnail' => 'image|nullable',
-        ];
+        if($this->is_new){
+            return [
+                'title' => 'required',
+                'slug' => 'required|unique:pages,slug',
+                'content' => 'required',
+                'thumbnail' => 'image|nullable',
+            ];
+        } else {
+            return [
+                'title' => 'required',
+                'slug' => ['required', Rule::unique('pages', 'slug')->ignore($this->page->id)],
+                'content' => 'required',
+                'thumbnail' => 'image|nullable',
+            ];
+        }
     }
 
     public function loadModel($slug)
@@ -62,12 +81,32 @@ class EditPage extends Component
         $this->thumbnail_url = $model->thumbnail_url;
     }
 
+    public function create()
+    {
+        $this->validate();
+        $page = new Page();
+        $page->title = $this->title;
+        $page->slug = Str::slug($this->slug);
+        $page->content = $this->content;
+        $page->save();
+        $page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
+        if ($this->thumbnail) {
+            $page->addMedia($this->thumbnail->getRealPath())
+                ->usingFileName(Str::random(32) . '.' . $this->thumbnail->getClientOriginalExtension())
+                ->toMediaCollection('thumbnail');
+        }
+        $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Page Created!']);
+        return redirect()->to('/pages/' . $page->slug);
+    }
+
     public function update()
     {
         $this->validate();
         $this->page->tags()->sync(Tag::whereIn('name', $this->tags)->get());
         if ($this->thumbnail){
-            $this->page->addMedia($this->thumbnail)->toMediaCollection('thumbnail');
+            $this->page->addMedia($this->thumbnail->getRealPath())
+            ->usingFileName(Str::random(32) . '.' . $this->thumbnail->getClientOriginalExtension())
+            ->toMediaCollection('thumbnail');
         }
         $this->page->update($this->modelData());
         session()->flash('flash.banner', 'Page saved successfully');
@@ -95,6 +134,15 @@ class EditPage extends Component
         return redirect()->route('pages.index');
     }
 
+    public function updatedTitle($value)
+    {
+        $this->slug=$this->generateSlug($value);
+    }
+
+    public function generateSlug($value)
+    {
+        return Str::slug($value);
+    }
 
     public function render()
     {

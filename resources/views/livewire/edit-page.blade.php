@@ -1,5 +1,5 @@
 <div>
-    <div class="mx-auto bg-gray-100 p-12 min-h-screen sm:w-8/12 md:w-9/12 lg:w-10/12">
+    <div class="mx-auto bg-gray-100 p-12 sm:w-8/12 md:w-9/12 lg:w-10/12">
         <section class="text-gray-900">
             <div class="mb-4">
                 <x-jet-label for="title" value="{{ __('Page Title') }}" />
@@ -13,7 +13,11 @@
             </div>
             <div class="mb-4" wire:model.debounce.365ms="content" wire:ignore>
                 <x-jet-label for="content" value="{{ __('Content') }}" />
+                @if(!$is_new)
                 <x-trix-field id="content" name="content" value="{!! $page->content->toTrixHtml() !!}"/>
+                @else
+                <x-trix-field id="content" name="content" value=""/>
+                @endif
                 @error('content') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mb-4">

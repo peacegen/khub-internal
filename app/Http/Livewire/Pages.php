@@ -54,18 +54,7 @@ class Pages extends Component
 
     public function create()
     {
-        if ($this->img) {
-            $this->newFiles = $this->img;
-            $this->img = $this->img->store('thumbnails');
-        }
-        $this->validate();
-        $this->unassignDefaultHomePage();
-        $this->unassignDefaultNotFoundPage();
-        $modelData = $this->modelData();
-        $page = Page::create($modelData);
-        $page->tags()->attach(Tag::whereIn('name', $this->tags)->get());
-        $this->modalFormVisible = false;
-        $this->reset();
+        return redirect()->route('create-page');
     }
 
     public function read()
