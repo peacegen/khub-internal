@@ -38,8 +38,9 @@
         <x-jet-banner />
 
         <div class="flex flex-col min-h-screen bg-gray-100">
-            <x-nav-menu/>
-
+            <!-- Nav Menu -->
+            @livewire('nav-menu')
+            <!-- End Nav Menu -->
             <div>
                 <!-- Page Content -->
                 <main>
