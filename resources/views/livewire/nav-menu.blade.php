@@ -8,19 +8,19 @@
             </a>
         </div>
         <div class="flex justify-end sm:w-8/12">
-            <ul class="hidden sm:flex sm:text-left gap-3 text-gray-100 hover:text-gray-50 text-sm">
+            <ul class="hidden sm:flex sm:text-left gap-3 text-gray-100 text-sm transition hover:text-gray-50">
                 <a href="{{ url('/') }}">
-                    <li class="cursor-pointer rounded-md px-4 py-2 hover:bg-primary-600">{{ __('Home') }}</li>
+                    <li class="cursor-pointer rounded-md px-4 py-2 transition hover:bg-primary-600">{{ __('Home') }}</li>
                 </a>
                 @foreach ($navLinks as $item)
                     <a href="{{ $item['url'] }}">
-                        <li class="cursor-pointer rounded-md px-4 py-2 min-w-max hover:bg-primary-600">{{ __($item['label']) }}</li>
+                        <li class="cursor-pointer rounded-md px-4 py-2 min-w-max transition hover:bg-primary-600">{{ __($item['label']) }}</li>
                     </a>
                 @endforeach
                 @auth
                 {{-- logout --}}
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <li class="cursor-pointer rounded-md px-4 py-2 bg-green-900 hover:opacity-80">{{ __('Logout') }}</li>
+                    <li class="cursor-pointer rounded-md px-4 py-2 bg-green-900 transition hover:opacity-80">{{ __('Logout') }}</li>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

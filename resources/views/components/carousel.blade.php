@@ -51,7 +51,8 @@
         }
         @media screen and ( min-width: 500px ) {
             .carousel-cell {
-                height: 370px;
+                height: auto;
+                max-height: 40vh;
             }
         }
         @media screen and ( min-width: 960px ) {
