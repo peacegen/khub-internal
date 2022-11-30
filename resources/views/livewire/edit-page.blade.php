@@ -31,11 +31,6 @@
                         @endforeach
                     </select>
                 </div>
-                {{-- <select class="select2" multiple wire:model="tags">
-                    @foreach ($tag_list as $tag)
-                        <option value="{{ $tag }}">{{ $tag }}</option>
-                    @endforeach
-                </select> --}}
             @endisset
             </div>
             {{-- file upload --}}

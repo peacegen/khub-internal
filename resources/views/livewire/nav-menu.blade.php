@@ -3,7 +3,7 @@
     <nav class="flex items-center justify-between bg-primary-500 px-3 py-6 shadow-lg">
         <div class="h-12 w-full flex items-center">
             <a href="{{ url('/') }}" class="w-max-content flex gap-4 items-center">
-                <img src="/assets/img/peacegen-logo.png" class="w-14" alt="Peacegen Logo">
+                <x-icons.logo/>
                 <h1 class="text-white text-base leading-6 font-bold">Knowledge Hub <br /> Comms</h1>
             </a>
         </div>
@@ -41,7 +41,6 @@
         </div>
     </nav>
     <div class="sm:flex block z-10 left-0 fixed overflow-x-hidden duration-300 w-full h-full bg-black/20 " :class="show ? 'h-full opacity-100': 'h-0 opacity-0'" @click="show =! show">
-        {{-- :class ="show ? 'sm:min-h-screen' : 'sm:min-h-0' --}}
         <aside :class="show ? 'block' : 'hidden'" class="duration-300 bg-primary-500 text-gray-700 divide-y divide-gray-700 divide-dashed sm:w-4/12 md:w-3/12 lg:w-2/12 sm:min-h-screen">
             <div :class="show ? 'block' : 'hidden'" class="pb-3 block sm:hidden">
             <ul class="text-gray-200 text-md divide-y divide-gray-100">

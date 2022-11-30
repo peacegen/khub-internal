@@ -1,5 +1,4 @@
 <div class="flex justify-center flex-col items-center">
-    {{-- // TODO Work more on the homepage --}}
     @if ($data && count($data))
     @foreach ($data as $tag)
         <div class="w-3/4 origin-center py-2">
