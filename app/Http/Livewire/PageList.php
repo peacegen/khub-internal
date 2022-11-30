@@ -22,7 +22,6 @@ class PageList extends Component
 
     public function render()
     {
-        // Debugbar::info($this->selectedTags);
         if($this->selectedTags && $this->selectedTags[0] != ''){
             $this->pageList = Page::where('title', 'like', '%' . $this->search . '%')
                 ->whereHas('tags', function ($query) {

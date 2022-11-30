@@ -17,7 +17,6 @@
                                 <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Name") }}</th>
                                 <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Email") }}</th>
                                 <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Role") }}</th>
-                                {{-- <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Teams") }}</th> --}}
                                 <th class="px-4 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __("Actions") }}</th>
                             </tr>
                         </thead>
@@ -28,7 +27,6 @@
                                         <td class="px-4 py-2">{{ $item->name }}</td>
                                         <td class="px-4 py-2">{{ $item->email }}</td>
                                         <td class="px-4 py-2">{{ $item->getRoleNames()[0] ?? '' }}</td>
-                                        {{-- <td class="px-4 py-2">{{ $item->team }}</td> --}}
                                         <td class="px-4 py-2 flex">
                                             <x-jet-button wire:click="update({{ $item->id }})">
                                                 {{ __('Update') }}

@@ -176,21 +176,6 @@ class Pages extends Component
         return Str::slug($value);
     }
 
-    // public function completeUpload(string $uploadedUrl, string $eventName)
-    // {
-    //     foreach ($this->newFiles as $file) {
-    //         if ($file->getFilename() === $uploadedUrl) {
-    //             $newFilename = $file->store('/', 'attachments');
-    //             $url = Storage::disk('attachments')->url($newFilename);
-    //             $this->dispatchBrowserEvent($eventName, [
-
-    //                 'url' => $url,
-    //                 'href' => $url,
-    //             ]);
-    //         }
-    //     }
-    // }
-
         /**
      * Runs everytime the isSetToDefaultHomePage
      * variable is updated.

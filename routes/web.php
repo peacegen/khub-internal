@@ -36,11 +36,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
                 return view('dashboard');
             })->name('dashboard');
 
-            // TODO Make better settings routing
-            Route::get('/settings', function () {
-                return view('livewire.settings');
-            })->name('settings');
-
             Route::get('/admin', AdminPage::class)->name('admin');
 
             Route::get('/admin/pages', function () {
@@ -89,7 +84,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     })->middleware(['auth'])->name('attachments.store');
 
     Route::prefix('auth')->group(function () {
-        // Route::get('/', AuthSelection::class)->name('auth');
         Route::get('/', AuthMenu::class)->name('auth');
 
         Route::get('google', [AuthLoginController::class, 'redirectToGoogle'])->name('auth.google');

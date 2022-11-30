@@ -27,22 +27,8 @@
                         @endforeach
                     </select>
                 </div>
-            {{-- @endisset --}}
             </div>
             @endisset
-            {{-- @isset($team_list)
-            <div class="mb-4">
-                <x-jet-label for="teams" value="{{ __('Teams') }}" />
-                <div wire:ignore >
-                    <select data-pharaonic="select2" multiple data-width="element" data-component-id="{{ $this->id }}" wire:model="teams">
-                        <option value="">{{ __('Select teams...') }}</option>
-                        @foreach($team_list as $team)
-                            <option value="{{ $team->id }}">{{ $team->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            @endisset --}}
             <x-jet-button class="" wire:click="update" wire:loading.attr="disabled">
                 {{ __('Update') }}
             </x-jet-button>

@@ -161,9 +161,6 @@ class EditPage extends Component
         $file->delete();
         $this->fileModels = $this->page->getMedia('files');
         $this->emit('refreshComponent');
-        // $this->reset('files');
-        // $this->fileModels = $this->page->getMedia('files');
-
     }
 
     public function updatedTitle($value)
