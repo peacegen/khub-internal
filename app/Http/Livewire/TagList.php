@@ -14,13 +14,7 @@ class TagList extends Component
 
     public function mount($tag)
     {
-
         $this->tag = $tag;
-        // $this->pages = Page::whereHas('tags', function ($query) {
-        //     $query->where('name', $this->tag);
-        // })->get();
-        Debugbar::info("hello");
-        // Debugbar::info($this->pages);
     }
 
     public function render()
